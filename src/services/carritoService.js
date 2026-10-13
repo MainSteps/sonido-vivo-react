@@ -1,3 +1,86 @@
+import { obtenerProductoPorCodigo } from './productosService.js'
+
+export const CLAVE_CARRITO = 'sonidoVivoCarrito'
+
+function obtenerAlmacenamiento() {
+  try {
+    return globalThis.localStorage ?? null
+  } catch {
+    return null
+  }
+}
+
+function normalizarCodigo(codigoProducto) {
+  return typeof codigoProducto === 'string'
+    ? codigoProducto.trim().toUpperCase()
+    : ''
+}
+
+export function normalizarItemsCarrito(datos) {
+  if (!Array.isArray(datos)) return []
+
+  const cantidadesPorCodigo = new Map()
+
+  datos.forEach((item) => {
+    if (!item || typeof item !== 'object') return
+
+    const codigoProducto = normalizarCodigo(item.codigoProducto)
+    const producto = obtenerProductoPorCodigo(codigoProducto)
+    const cantidad = Math.trunc(Number(item.cantidad))
+
+    if (
+      !producto ||
+      producto.stock < 1 ||
+      !Number.isFinite(cantidad) ||
+      cantidad < 1
+    ) return
+
+    const cantidadAcumulada =
+      (cantidadesPorCodigo.get(codigoProducto) ?? 0) + cantidad
+
+    cantidadesPorCodigo.set(
+      codigoProducto,
+      Math.min(cantidadAcumulada, producto.stock),
+    )
+  })
+
+  return Array.from(cantidadesPorCodigo, ([codigoProducto, cantidad]) => ({
+    codigoProducto,
+    cantidad,
+  }))
+}
+
+export function leerCarrito() {
+  const almacenamiento = obtenerAlmacenamiento()
+  if (!almacenamiento) return []
+
+  try {
+    const datosGuardados = almacenamiento.getItem(CLAVE_CARRITO)
+    if (datosGuardados === null) return []
+
+    return normalizarItemsCarrito(JSON.parse(datosGuardados))
+  } catch {
+    return []
+  }
+}
+
+export function guardarCarrito(items) {
+  const almacenamiento = obtenerAlmacenamiento()
+  if (!almacenamiento) return false
+
+  const datosGuardados = items.map(({ codigoProducto, cantidad }) => ({
+    codigoProducto,
+    cantidad,
+  }))
+
+  try {
+    almacenamiento.setItem(CLAVE_CARRITO, JSON.stringify(datosGuardados))
+    return true
+  } catch {
+    return false
+  }
+}
+
 function resultadoError(error) {
   return { ok: false, error }
 }

@@ -1,15 +1,21 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { obtenerProductoPorCodigo } from '../services/productosService.js'
 import {
   agregarItemCarrito,
   cambiarCantidadItem,
   eliminarItemCarrito,
+  guardarCarrito,
+  leerCarrito,
 } from '../services/carritoService.js'
 import { CarritoContext } from './CarritoContext.js'
 
 export function CarritoProvider({ children }) {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(leerCarrito)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    guardarCarrito(items)
+  }, [items])
 
   const productos = useMemo(
     () =>

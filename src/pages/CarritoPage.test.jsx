@@ -7,6 +7,7 @@ import {
   useCarrito,
 } from '../context/CarritoContext.js'
 import { CarritoProvider } from '../context/CarritoProvider.jsx'
+import { CLAVE_CARRITO } from '../services/carritoService.js'
 
 function ControlesPrueba() {
   const { agregarProducto } = useCarrito()
@@ -138,6 +139,30 @@ describe('Carrito', () => {
     await usuario.click(
       screen.getByRole('button', { name: 'Vaciar carrito' }),
     )
+
+    expect(screen.getByText('Tu carrito está vacío.')).toBeInTheDocument()
+  })
+
+  test('restaura el carrito guardado al volver a cargar la aplicación', () => {
+    localStorage.setItem(
+      CLAVE_CARRITO,
+      JSON.stringify([
+        { codigoProducto: 'SV-GUI-001', cantidad: 2 },
+      ]),
+    )
+
+    renderizarCarrito()
+
+    expect(
+      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
+    ).toHaveTextContent('2')
+    expect(screen.getByText(/Total:.*659\.980/)).toBeInTheDocument()
+  })
+
+  test('muestra el carrito vacío si el almacenamiento está corrupto', () => {
+    localStorage.setItem(CLAVE_CARRITO, '{json-incompleto')
+
+    renderizarCarrito()
 
     expect(screen.getByText('Tu carrito está vacío.')).toBeInTheDocument()
   })
