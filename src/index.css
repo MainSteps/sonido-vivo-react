@@ -156,6 +156,35 @@ code {
   justify-items: center;
 }
 
+.productos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.producto-card {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.producto-card img {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.productos-page > a {
+  display: inline-block;
+  margin-top: 24px;
+}
+
 @media (max-width: 700px) {
   .page-section {
     padding: 20px;

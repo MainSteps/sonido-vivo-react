@@ -4,6 +4,7 @@ import RegistroPage from './pages/RegistroPage.jsx'
 import InicioSesionPage from './pages/InicioSesionPage.jsx'
 import ContactoPage from './pages/ContactoPage.jsx'
 import CarritoPage from './pages/CarritoPage.jsx'
+import ProductosPage from './pages/ProductosPage.jsx'
 import { CarritoProvider } from './context/CarritoProvider.jsx'
 
 function App() {
@@ -22,12 +23,7 @@ function App() {
 
       <Route
         path="/productos"
-        element={
-          <PlaceholderPage
-            title="Catálogo"
-            description="Aquí se mostrará el catálogo de productos."
-          />
-        }
+        element={<ProductosPage />}
       />
 
       <Route
