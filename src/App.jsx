@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
+import RegistroPage from './pages/RegistroPage.jsx'
+import InicioSesionPage from './pages/InicioSesionPage.jsx'
+import ContactoPage from './pages/ContactoPage.jsx'
 
 function App() {
   return (
@@ -44,35 +47,11 @@ function App() {
         }
       />
 
-      <Route
-        path="/registro"
-        element={
-          <PlaceholderPage
-            title="Registro"
-            description="Aquí se creará una cuenta ficticia."
-          />
-        }
-      />
+      <Route path="/registro" element={<RegistroPage />} />
 
-      <Route
-        path="/login"
-        element={
-          <PlaceholderPage
-            title="Inicio de sesión"
-            description="Aquí se realizará el acceso simulado."
-          />
-        }
-      />
+      <Route path="/login" element={<InicioSesionPage />} />
 
-      <Route
-        path="/contacto"
-        element={
-          <PlaceholderPage
-            title="Contacto"
-            description="Aquí se encontrará el formulario de contacto."
-          />
-        }
-      />
+      <Route path="/contacto" element={<ContactoPage />} />
 
       <Route
         path="/nosotros"
