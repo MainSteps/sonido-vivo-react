@@ -1,9 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
+import SiteFooter from './components/SiteFooter.jsx'
+import SiteHeader from './components/SiteHeader.jsx'
+import CatalogoPage from './pages/CatalogoPage.jsx'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
+import ProductoDetallePage from './pages/ProductoDetallePage.jsx'
 
 function App() {
   return (
-    <Routes>
+    <div className="app-shell">
+      <SiteHeader />
+      <Routes>
       <Route
         path="/"
         element={
@@ -16,22 +22,12 @@ function App() {
 
       <Route
         path="/productos"
-        element={
-          <PlaceholderPage
-            title="Catálogo"
-            description="Aquí se mostrará el catálogo de productos."
-          />
-        }
+        element={<CatalogoPage />}
       />
 
       <Route
         path="/productos/:id"
-        element={
-          <PlaceholderPage
-            title="Detalle del producto"
-            description="Aquí se mostrará la información de un producto."
-          />
-        }
+        element={<ProductoDetallePage />}
       />
 
       <Route
@@ -133,7 +129,9 @@ function App() {
           />
         }
       />
-    </Routes>
+      </Routes>
+      <SiteFooter />
+    </div>
   )
 }
 
