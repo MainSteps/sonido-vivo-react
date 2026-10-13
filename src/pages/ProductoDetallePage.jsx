@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
+import { useCarrito } from '../context/CarritoContext.js'
 import { obtenerProductoPorCodigo } from '../services/productosService.js'
 import { formatearPrecio } from '../utils/formatoPrecio.js'
 
 function ProductoDetallePage() {
   const { id } = useParams()
+  const { agregarProducto, error } = useCarrito()
   const producto = obtenerProductoPorCodigo(id)
 
   if (!producto) {
@@ -45,9 +47,20 @@ function ProductoDetallePage() {
               ? `${producto.stock} unidades disponibles`
               : 'Producto sin stock'}
           </p>
-          <Link className="button button--secondary" to="/carrito">
-            Ir al carrito
-          </Link>
+          {error ? <p className="catalog-error" role="alert">{error}</p> : null}
+          <div className="product-detail__actions">
+            <button
+              className="button button--primary"
+              disabled={producto.stock === 0}
+              type="button"
+              onClick={() => agregarProducto(producto.codigo)}
+            >
+              {producto.stock === 0 ? 'Sin stock' : 'Agregar al carrito'}
+            </button>
+            <Link className="button button--secondary" to="/carrito">
+              Ir al carrito
+            </Link>
+          </div>
         </div>
       </article>
     </main>

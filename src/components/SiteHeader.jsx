@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { useCarrito } from '../context/CarritoContext.js'
 
 const enlaces = [
   { to: '/', label: 'Inicio', end: true },
@@ -9,6 +10,15 @@ const enlaces = [
 ]
 
 function SiteHeader() {
+  const { items } = useCarrito()
+  const cantidadProductos = items.reduce(
+    (total, item) => total + item.cantidad,
+    0,
+  )
+  const etiquetaCarrito = `Carrito, ${cantidadProductos} ${
+    cantidadProductos === 1 ? 'producto' : 'productos'
+  }`
+
   return (
     <header className="site-header">
       <NavLink className="brand" to="/" aria-label="Sonido Vivo, inicio">
@@ -29,8 +39,12 @@ function SiteHeader() {
         ))}
       </nav>
 
-      <NavLink className="cart-link" to="/carrito">
-        Carrito <span aria-hidden="true">0</span>
+      <NavLink
+        aria-label={etiquetaCarrito}
+        className="cart-link"
+        to="/carrito"
+      >
+        Carrito <span aria-hidden="true">{cantidadProductos}</span>
       </NavLink>
     </header>
   )

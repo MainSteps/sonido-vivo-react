@@ -2,16 +2,27 @@ import { describe, expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { useCarrito } from '../context/CarritoContext.js'
+import { CarritoProvider } from '../context/CarritoProvider.jsx'
 import CatalogoPage from './CatalogoPage.jsx'
 import ProductoDetallePage from './ProductoDetallePage.jsx'
 
+function renderizarConCarrito(contenido) {
+  return render(
+    <MemoryRouter>
+      <CarritoProvider>{contenido}</CarritoProvider>
+    </MemoryRouter>,
+  )
+}
+
+function EstadoCarritoPrueba() {
+  const { items } = useCarrito()
+  return <p aria-label="Productos en carrito">{items.length}</p>
+}
+
 describe('catálogo de productos', () => {
   test('renderiza el listado completo desde el servicio', () => {
-    render(
-      <MemoryRouter>
-        <CatalogoPage />
-      </MemoryRouter>,
-    )
+    renderizarConCarrito(<CatalogoPage />)
 
     expect(screen.getAllByRole('article')).toHaveLength(6)
     expect(
@@ -22,11 +33,7 @@ describe('catálogo de productos', () => {
   test('combina el filtro de categoría con la búsqueda', async () => {
     const user = userEvent.setup()
 
-    render(
-      <MemoryRouter>
-        <CatalogoPage />
-      </MemoryRouter>,
-    )
+    renderizarConCarrito(<CatalogoPage />)
 
     await user.selectOptions(
       screen.getByLabelText('Filtrar por categoría'),
@@ -48,9 +55,11 @@ describe('catálogo de productos', () => {
   test('muestra una explicación y regreso seguro para un producto inexistente', () => {
     render(
       <MemoryRouter initialEntries={['/productos/NO-EXISTE']}>
-        <Routes>
-          <Route path="/productos/:id" element={<ProductoDetallePage />} />
-        </Routes>
+        <CarritoProvider>
+          <Routes>
+            <Route path="/productos/:id" element={<ProductoDetallePage />} />
+          </Routes>
+        </CarritoProvider>
       </MemoryRouter>,
     )
 
@@ -60,5 +69,26 @@ describe('catálogo de productos', () => {
     expect(
       screen.getByRole('link', { name: 'Volver al catálogo' }),
     ).toHaveAttribute('href', '/productos')
+  })
+
+  test('agrega un producto desde la vista de detalle', async () => {
+    const user = userEvent.setup()
+
+    render(
+      <MemoryRouter initialEntries={['/productos/SV-GUI-001']}>
+        <CarritoProvider>
+          <EstadoCarritoPrueba />
+          <Routes>
+            <Route path="/productos/:id" element={<ProductoDetallePage />} />
+          </Routes>
+        </CarritoProvider>
+      </MemoryRouter>,
+    )
+
+    await user.click(
+      screen.getByRole('button', { name: 'Agregar al carrito' }),
+    )
+
+    expect(screen.getByLabelText('Productos en carrito')).toHaveTextContent('1')
   })
 })
