@@ -3,10 +3,13 @@ import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import RegistroPage from './pages/RegistroPage.jsx'
 import InicioSesionPage from './pages/InicioSesionPage.jsx'
 import ContactoPage from './pages/ContactoPage.jsx'
+import CarritoPage from './pages/CarritoPage.jsx'
+import { CarritoProvider } from './context/CarritoProvider.jsx'
 
 function App() {
   return (
-    <Routes>
+    <CarritoProvider>
+      <Routes>
       <Route
         path="/"
         element={
@@ -39,12 +42,7 @@ function App() {
 
       <Route
         path="/carrito"
-        element={
-          <PlaceholderPage
-            title="Carrito"
-            description="Aquí se administrarán los productos seleccionados."
-          />
-        }
+        element={<CarritoPage />}
       />
 
       <Route path="/registro" element={<RegistroPage />} />
@@ -112,7 +110,8 @@ function App() {
           />
         }
       />
-    </Routes>
+      </Routes>
+    </CarritoProvider>
   )
 }
 
