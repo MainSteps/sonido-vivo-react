@@ -44,7 +44,7 @@ describe('Rutas de la aplicación', () => {
 
     const guitarra = screen
       .getByRole('heading', { name: 'Guitarra eléctrica Aurora' })
-      .closest('li')
+      .closest('article')
 
     await usuario.click(
       within(guitarra).getByRole('button', { name: 'Agregar al carrito' }),
@@ -57,5 +57,27 @@ describe('Rutas de la aplicación', () => {
     expect(
       screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
     ).toHaveTextContent('1')
+  })
+
+  test('actualiza el contador del encabezado al agregar un producto', async () => {
+    const usuario = userEvent.setup()
+
+    render(
+      <MemoryRouter initialEntries={['/productos']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    const guitarra = screen
+      .getByRole('heading', { name: 'Guitarra eléctrica Aurora' })
+      .closest('article')
+
+    await usuario.click(
+      within(guitarra).getByRole('button', { name: 'Agregar al carrito' }),
+    )
+
+    expect(
+      screen.getByRole('link', { name: 'Carrito, 1 producto' }),
+    ).toBeInTheDocument()
   })
 })

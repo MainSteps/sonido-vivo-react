@@ -16,16 +16,16 @@ assignees: ""
 
 ## Alcance incluido
 
-- 
+-
 
 ## Fuera de alcance
 
-- 
+-
 
 ## Criterios de aceptación
 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
 
 ## Pruebas requeridas
 
