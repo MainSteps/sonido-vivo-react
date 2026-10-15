@@ -133,6 +133,8 @@ function AdminProductosPage({ servicio = productosService }) {
 
           <form className="admin-product-form" noValidate onSubmit={guardarProducto}>
             <Campo
+              ayuda={estaEditando ? 'El código identifica al producto y no puede cambiarse durante la edición.' : undefined}
+              disabled={estaEditando}
               error={errores.codigo}
               id="producto-codigo"
               label="Código"
@@ -299,18 +301,23 @@ function AdminProductosPage({ servicio = productosService }) {
   )
 }
 
-function Campo({ error, id, label, ...propiedades }) {
+function Campo({ ayuda, error, id, label, ...propiedades }) {
   const idError = `${id}-error`
+  const idAyuda = `${id}-ayuda`
+  const descripcion = [error ? idError : null, ayuda ? idAyuda : null]
+    .filter(Boolean)
+    .join(' ') || undefined
 
   return (
     <div className="field">
       <label htmlFor={id}>{label}</label>
       <input
         {...propiedades}
-        aria-describedby={error ? idError : undefined}
+        aria-describedby={descripcion}
         aria-invalid={Boolean(error)}
         id={id}
       />
+      {ayuda ? <span className="field-help" id={idAyuda}>{ayuda}</span> : null}
       <ErrorCampo id={idError} mensaje={error} />
     </div>
   )

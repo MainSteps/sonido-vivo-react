@@ -582,6 +582,18 @@ p {
   font-weight: 700;
 }
 
+.field-help {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.field input:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+  background: #191820;
+}
+
 .admin-form-actions {
   display: grid;
   gap: 0.65rem;

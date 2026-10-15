@@ -88,6 +88,11 @@ describe('administración de productos', () => {
     await usuario.click(
       screen.getByRole('button', { name: 'Editar Amplificador Mini' }),
     )
+    expect(screen.getByLabelText('Código')).toBeDisabled()
+    expect(screen.getByLabelText('Código')).toHaveValue('SV-NUE-007')
+    expect(
+      screen.getByText('El código identifica al producto y no puede cambiarse durante la edición.'),
+    ).toBeInTheDocument()
     const campoNombre = screen.getByLabelText('Nombre')
     await usuario.clear(campoNombre)
     await usuario.type(campoNombre, 'Amplificador Mini Pro')
