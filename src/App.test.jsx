@@ -54,9 +54,7 @@ describe('Rutas de la aplicación', () => {
     expect(
       screen.getByRole('heading', { name: 'Guitarra eléctrica Aurora' }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('1')
+    expect(screen.getByLabelText('Cantidad')).toHaveValue(1)
   })
 
   test('actualiza el contador del encabezado al agregar un producto', async () => {
@@ -77,7 +75,7 @@ describe('Rutas de la aplicación', () => {
     )
 
     expect(
-      screen.getByRole('link', { name: 'Carrito, 1 producto' }),
+      screen.getByRole('link', { name: 'Ver carrito, 1 producto' }),
     ).toBeInTheDocument()
   })
 })
