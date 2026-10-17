@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import SiteFooter from './components/SiteFooter.jsx'
 import SiteHeader from './components/SiteHeader.jsx'
 import { CarritoProvider } from './context/CarritoProvider.jsx'
+import AdminProductosPage from './pages/AdminProductosPage.jsx'
 import CarritoPage from './pages/CarritoPage.jsx'
 import CatalogoPage from './pages/CatalogoPage.jsx'
 import ContactoPage from './pages/ContactoPage.jsx'
@@ -63,15 +64,7 @@ function App() {
             }
           />
 
-          <Route
-            path="/admin/productos"
-            element={
-              <PlaceholderPage
-                title="Administrar productos"
-                description="Aquí se realizará el CRUD de productos."
-              />
-            }
-          />
+          <Route path="/admin/productos" element={<AdminProductosPage />} />
 
           <Route
             path="/admin/usuarios"

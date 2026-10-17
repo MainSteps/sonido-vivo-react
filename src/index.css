@@ -27,7 +27,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -198,7 +199,8 @@ p {
 }
 
 .field input,
-.field select {
+.field select,
+.field textarea {
   width: 100%;
   min-height: 48px;
   padding: 0.7rem 0.85rem;
@@ -210,7 +212,8 @@ p {
 }
 
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(240, 68, 131, 0.18);
 }
@@ -473,6 +476,217 @@ p {
   text-decoration: none;
 }
 
+.admin-products-page {
+  width: min(1280px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+}
+
+.admin-products-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-products-header > div {
+  max-width: 760px;
+}
+
+.admin-products-header h1 {
+  margin-bottom: 0.75rem;
+}
+
+.admin-products-header p:last-child {
+  margin-bottom: 0;
+}
+
+.admin-products-count {
+  flex: 0 0 auto;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--surface);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.admin-message {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid;
+  border-radius: 10px;
+  font-weight: 750;
+}
+
+.admin-message--exito {
+  color: #9ce7c0;
+  border-color: #286b4a;
+  background: rgba(40, 107, 74, 0.2);
+}
+
+.admin-message--error {
+  color: #ffafc5;
+  border-color: #88405a;
+  background: rgba(136, 64, 90, 0.2);
+}
+
+.admin-products-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.5fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.admin-form-panel,
+.admin-list-panel {
+  min-width: 0;
+  padding: 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(23, 23, 31, 0.94);
+}
+
+.admin-form-panel {
+  position: sticky;
+  top: 1rem;
+}
+
+.admin-product-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-product-form textarea {
+  width: 100%;
+  padding: 0.8rem 0.85rem;
+  resize: vertical;
+  border: 1px solid #444251;
+  border-radius: 10px;
+  outline: none;
+  color: #fff;
+  background: #0d0d13;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.field-error {
+  color: #ff9fba;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.field-help {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.field input:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+  background: #191820;
+}
+
+.admin-form-actions {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.admin-list-heading h2 {
+  margin-bottom: 1rem;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-products-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-products-table th,
+.admin-products-table td {
+  padding: 0.9rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.admin-products-table th {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-products-table td {
+  color: #f7f5fa;
+  font-size: 0.88rem;
+}
+
+.admin-products-table td:first-child strong,
+.admin-products-table td:first-child span {
+  display: block;
+}
+
+.admin-products-table td:first-child span {
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.admin-row-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.admin-row-actions button {
+  min-height: 36px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #555261;
+  border-radius: 7px;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.admin-row-actions button:hover {
+  border-color: var(--accent);
+  background: #292733;
+}
+
+.admin-row-actions .admin-delete-button {
+  color: #ffafc5;
+  border-color: #754055;
+}
+
+.admin-empty-state {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  border: 1px dashed #454250;
+  border-radius: 12px;
+}
+
+.admin-empty-state h3 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.admin-empty-state p {
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   .site-header {
     padding: 1rem 0;
@@ -509,6 +723,14 @@ p {
     justify-items: center;
     gap: 0.75rem;
   }
+
+  .admin-products-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-panel {
+    position: static;
+  }
 }
 
 @media (max-width: 600px) {
@@ -519,7 +741,8 @@ p {
   }
 
   .site-header,
-  .site-footer {
+  .site-footer,
+  .admin-products-page {
     width: min(100% - 1.25rem, 1180px);
   }
 
@@ -540,6 +763,24 @@ p {
   .empty-state,
   .not-found-product {
     padding: 1.5rem;
+  }
+
+  .admin-products-page {
+    padding: 3rem 0 4rem;
+  }
+
+  .admin-products-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .admin-products-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .admin-form-row {
+    grid-template-columns: 1fr;
   }
 }
 

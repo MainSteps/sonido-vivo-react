@@ -66,7 +66,9 @@ describe('Carrito', () => {
     expect(
       screen.getAllByRole('heading', { name: 'Guitarra eléctrica Aurora' }),
     ).toHaveLength(1)
-    expect(screen.getByLabelText('Cantidad')).toHaveValue(2)
+    expect(
+      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
+    ).toHaveValue(2)
     expect(
       within(
         screen.getByRole('complementary', { name: 'Total de la compra' }),
@@ -88,7 +90,9 @@ describe('Carrito', () => {
     expect(screen.getByRole('alert')).toHaveTextContent(
       'Solo hay 8 unidades disponibles.',
     )
-    expect(screen.getByLabelText('Cantidad')).toHaveValue(8)
+    expect(
+      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
+    ).toHaveValue(8)
   })
 
   test('muestra el error de stock desde el control real del carrito', async () => {
@@ -98,14 +102,17 @@ describe('Carrito', () => {
     await usuario.click(
       screen.getByRole('button', { name: 'Agregar guitarra' }),
     )
-    await usuario.clear(screen.getByLabelText('Cantidad'))
-    await usuario.type(screen.getByLabelText('Cantidad'), '9')
+    const cantidad = screen.getByLabelText(
+      'Cantidad de Guitarra eléctrica Aurora',
+    )
+    await usuario.clear(cantidad)
+    await usuario.type(cantidad, '9')
     await usuario.click(screen.getByRole('button', { name: 'Actualizar' }))
 
     expect(screen.getByRole('alert')).toHaveTextContent(
       'Solo hay 8 unidades disponibles.',
     )
-    expect(screen.getByLabelText('Cantidad')).toHaveValue(1)
+    expect(cantidad).toHaveValue(1)
   })
 
   test('impide disminuir una cantidad bajo uno', async () => {
@@ -115,14 +122,17 @@ describe('Carrito', () => {
     await usuario.click(
       screen.getByRole('button', { name: 'Agregar guitarra' }),
     )
-    await usuario.clear(screen.getByLabelText('Cantidad'))
-    await usuario.type(screen.getByLabelText('Cantidad'), '0')
+    const cantidad = screen.getByLabelText(
+      'Cantidad de Guitarra eléctrica Aurora',
+    )
+    await usuario.clear(cantidad)
+    await usuario.type(cantidad, '0')
     await usuario.click(screen.getByRole('button', { name: 'Actualizar' }))
 
     expect(screen.getByRole('alert')).toHaveTextContent(
       'La cantidad mínima permitida es 1.',
     )
-    expect(screen.getByLabelText('Cantidad')).toHaveValue(1)
+    expect(cantidad).toHaveValue(1)
   })
 
   test('elimina un producto y muestra inmediatamente el estado vacío', async () => {
@@ -170,7 +180,9 @@ describe('Carrito', () => {
 
     renderizarCarrito()
 
-    expect(screen.getByLabelText('Cantidad')).toHaveValue(2)
+    expect(
+      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
+    ).toHaveValue(2)
     expect(
       within(
         screen.getByRole('complementary', { name: 'Total de la compra' }),

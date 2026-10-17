@@ -20,6 +20,7 @@ function CampoCantidad({ producto, cambiarCantidad }) {
         <span>Cantidad</span>
         <input
           id={`cantidad-${producto.codigo}`}
+          aria-label={`Cantidad de ${producto.nombre}`}
           type="number"
           min="1"
           max={producto.stock}
