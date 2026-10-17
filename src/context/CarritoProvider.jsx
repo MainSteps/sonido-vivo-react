@@ -69,7 +69,7 @@ export function CarritoProvider({ children }) {
 
     if (!producto) {
       setError('El producto seleccionado ya no existe.')
-      return
+      return false
     }
 
     const resultado = cambiarCantidadItem(
@@ -81,11 +81,12 @@ export function CarritoProvider({ children }) {
 
     if (!resultado.ok) {
       setError(resultado.error)
-      return
+      return false
     }
 
     setItems(resultado.items)
     setError('')
+    return true
   }
 
   function eliminarProducto(codigoProducto) {

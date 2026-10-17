@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import CarritoPage from './CarritoPage.jsx'
@@ -68,8 +68,12 @@ describe('Carrito', () => {
     ).toHaveLength(1)
     expect(
       screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('2')
-    expect(screen.getByText(/Total:.*659\.980/)).toBeInTheDocument()
+    ).toHaveValue(2)
+    expect(
+      within(
+        screen.getByRole('complementary', { name: 'Total de la compra' }),
+      ).getByText(/659\.980/),
+    ).toBeInTheDocument()
   })
 
   test('impide superar el stock disponible', async () => {
@@ -88,7 +92,27 @@ describe('Carrito', () => {
     )
     expect(
       screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('8')
+    ).toHaveValue(8)
+  })
+
+  test('muestra el error de stock desde el control real del carrito', async () => {
+    const usuario = userEvent.setup()
+    renderizarCarrito()
+
+    await usuario.click(
+      screen.getByRole('button', { name: 'Agregar guitarra' }),
+    )
+    const cantidad = screen.getByLabelText(
+      'Cantidad de Guitarra eléctrica Aurora',
+    )
+    await usuario.clear(cantidad)
+    await usuario.type(cantidad, '9')
+    await usuario.click(screen.getByRole('button', { name: 'Actualizar' }))
+
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Solo hay 8 unidades disponibles.',
+    )
+    expect(cantidad).toHaveValue(1)
   })
 
   test('impide disminuir una cantidad bajo uno', async () => {
@@ -98,18 +122,17 @@ describe('Carrito', () => {
     await usuario.click(
       screen.getByRole('button', { name: 'Agregar guitarra' }),
     )
-    await usuario.click(
-      screen.getByRole('button', {
-        name: 'Disminuir cantidad de Guitarra eléctrica Aurora',
-      }),
+    const cantidad = screen.getByLabelText(
+      'Cantidad de Guitarra eléctrica Aurora',
     )
+    await usuario.clear(cantidad)
+    await usuario.type(cantidad, '0')
+    await usuario.click(screen.getByRole('button', { name: 'Actualizar' }))
 
     expect(screen.getByRole('alert')).toHaveTextContent(
       'La cantidad mínima permitida es 1.',
     )
-    expect(
-      screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('1')
+    expect(cantidad).toHaveValue(1)
   })
 
   test('elimina un producto y muestra inmediatamente el estado vacío', async () => {
@@ -123,7 +146,9 @@ describe('Carrito', () => {
       screen.getByRole('button', { name: 'Eliminar' }),
     )
 
-    expect(screen.getByText('Tu carrito está vacío.')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'El carrito está vacío' }),
+    ).toBeInTheDocument()
   })
 
   test('vacía todos los productos del carrito', async () => {
@@ -140,7 +165,9 @@ describe('Carrito', () => {
       screen.getByRole('button', { name: 'Vaciar carrito' }),
     )
 
-    expect(screen.getByText('Tu carrito está vacío.')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'El carrito está vacío' }),
+    ).toBeInTheDocument()
   })
 
   test('restaura el carrito guardado al volver a cargar la aplicación', () => {
@@ -155,8 +182,12 @@ describe('Carrito', () => {
 
     expect(
       screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('2')
-    expect(screen.getByText(/Total:.*659\.980/)).toBeInTheDocument()
+    ).toHaveValue(2)
+    expect(
+      within(
+        screen.getByRole('complementary', { name: 'Total de la compra' }),
+      ).getByText(/659\.980/),
+    ).toBeInTheDocument()
   })
 
   test('muestra el carrito vacío si el almacenamiento está corrupto', () => {
@@ -164,6 +195,8 @@ describe('Carrito', () => {
 
     renderizarCarrito()
 
-    expect(screen.getByText('Tu carrito está vacío.')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'El carrito está vacío' }),
+    ).toBeInTheDocument()
   })
 })
