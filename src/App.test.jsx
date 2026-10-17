@@ -17,8 +17,91 @@ describe('Rutas de la aplicación', () => {
     )
 
     expect(
-      screen.getByRole('heading', { name: 'Inicio' }),
+      screen.getByRole('heading', {
+        name: 'Instrumentos para crear tu propio sonido',
+      }),
     ).toBeInTheDocument()
+  })
+
+  test('renderiza el encabezado y permite abrir el menú', async () => {
+    const usuario = userEvent.setup()
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    const navegacion = screen.getByRole('navigation', {
+      name: 'Navegación principal',
+    })
+    const botonMenu = screen.getByRole('button', { name: 'Menú' })
+
+    expect(within(navegacion).getByRole('link', { name: 'Inicio' })).toBeInTheDocument()
+    expect(within(navegacion).getByRole('link', { name: 'Blog' })).toBeInTheDocument()
+    expect(botonMenu).toHaveAttribute('aria-expanded', 'false')
+
+    await usuario.click(botonMenu)
+
+    expect(botonMenu).toHaveAttribute('aria-expanded', 'true')
+    expect(navegacion).toHaveClass('is-open')
+  })
+
+  test('permite entrar al blog desde la navegación', async () => {
+    const usuario = userEvent.setup()
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    await usuario.click(screen.getByRole('link', { name: 'Blog' }))
+
+    expect(
+      screen.getByRole('heading', { name: 'Blog de Sonido Vivo' }),
+    ).toBeInTheDocument()
+  })
+
+  test('muestra la página nosotros', () => {
+    render(
+      <MemoryRouter initialEntries={['/nosotros']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', {
+        name: 'La música se disfruta mejor cuando se comparte',
+      }),
+    ).toBeInTheDocument()
+  })
+
+  test('muestra el detalle de un artículo existente', () => {
+    render(
+      <MemoryRouter initialEntries={['/blog/preparar-primer-ensayo']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', { name: 'Cómo preparar tu primer ensayo' }),
+    ).toBeInTheDocument()
+  })
+
+  test('muestra un estado comprensible si el artículo no existe', () => {
+    render(
+      <MemoryRouter initialEntries={['/blog/no-existe']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', { name: 'Artículo no encontrado' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: 'Ver artículos' }),
+    ).toHaveAttribute('href', '/blog')
   })
 
   test('muestra la página de error para una ruta inexistente', () => {

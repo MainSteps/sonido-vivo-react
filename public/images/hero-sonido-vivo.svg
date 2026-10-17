@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Escenario abstracto de Sonido Vivo</title>
+  <desc id="desc">Ondas musicales rosadas y violetas sobre un escenario oscuro.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#17171f"/><stop offset="1" stop-color="#35142c"/></linearGradient><linearGradient id="wave"><stop stop-color="#f04483"/><stop offset="1" stop-color="#9a5cff"/></linearGradient></defs>
+  <rect width="1200" height="720" rx="48" fill="url(#bg)"/>
+  <circle cx="950" cy="150" r="220" fill="#f04483" opacity=".13"/>
+  <path d="M80 390 C190 210 290 570 400 390 S610 210 720 390 S930 570 1120 300" fill="none" stroke="url(#wave)" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="270" cy="250" r="34" fill="#f7f5fa"/><path d="M304 250v-125l120-35v165" fill="none" stroke="#f7f5fa" stroke-width="24"/><circle cx="424" cy="255" r="34" fill="#f7f5fa"/>
+  <text x="80" y="620" fill="#f7f5fa" font-family="Arial,sans-serif" font-size="62" font-weight="700">SONIDO VIVO</text>
+</svg>

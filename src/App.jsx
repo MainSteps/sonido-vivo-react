@@ -3,10 +3,14 @@ import SiteFooter from './components/SiteFooter.jsx'
 import SiteHeader from './components/SiteHeader.jsx'
 import { CarritoProvider } from './context/CarritoProvider.jsx'
 import AdminProductosPage from './pages/AdminProductosPage.jsx'
+import BlogDetallePage from './pages/BlogDetallePage.jsx'
+import BlogPage from './pages/BlogPage.jsx'
 import CarritoPage from './pages/CarritoPage.jsx'
 import CatalogoPage from './pages/CatalogoPage.jsx'
 import ContactoPage from './pages/ContactoPage.jsx'
+import InicioPage from './pages/InicioPage.jsx'
 import InicioSesionPage from './pages/InicioSesionPage.jsx'
+import NosotrosPage from './pages/NosotrosPage.jsx'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import ProductoDetallePage from './pages/ProductoDetallePage.jsx'
 import RegistroPage from './pages/RegistroPage.jsx'
@@ -17,15 +21,7 @@ function App() {
       <div className="app-shell">
         <SiteHeader />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <PlaceholderPage
-                title="Inicio"
-                description="Página principal de Sonido Vivo."
-              />
-            }
-          />
+          <Route path="/" element={<InicioPage />} />
 
           <Route path="/productos" element={<CatalogoPage />} />
           <Route path="/productos/:id" element={<ProductoDetallePage />} />
@@ -34,35 +30,10 @@ function App() {
           <Route path="/login" element={<InicioSesionPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
 
-          <Route
-            path="/nosotros"
-            element={
-              <PlaceholderPage
-                title="Nosotros"
-                description="Aquí se presentará la información de Sonido Vivo."
-              />
-            }
-          />
+          <Route path="/nosotros" element={<NosotrosPage />} />
 
-          <Route
-            path="/blog"
-            element={
-              <PlaceholderPage
-                title="Blog"
-                description="Aquí se mostrarán los artículos musicales."
-              />
-            }
-          />
-
-          <Route
-            path="/blog/:id"
-            element={
-              <PlaceholderPage
-                title="Artículo"
-                description="Aquí se mostrará el detalle de un artículo."
-              />
-            }
-          />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetallePage />} />
 
           <Route path="/admin/productos" element={<AdminProductosPage />} />
 
