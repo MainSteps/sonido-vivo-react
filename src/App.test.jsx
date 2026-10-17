@@ -56,7 +56,7 @@ describe('Rutas de la aplicación', () => {
     ).toBeInTheDocument()
     expect(
       screen.getByLabelText('Cantidad de Guitarra eléctrica Aurora'),
-    ).toHaveTextContent('1')
+    ).toHaveValue(1)
   })
 
   test('actualiza el contador del encabezado al agregar un producto', async () => {
@@ -77,7 +77,7 @@ describe('Rutas de la aplicación', () => {
     )
 
     expect(
-      screen.getByRole('link', { name: 'Carrito, 1 producto' }),
+      screen.getByRole('link', { name: 'Ver carrito, 1 producto' }),
     ).toBeInTheDocument()
   })
 })

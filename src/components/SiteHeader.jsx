@@ -15,7 +15,7 @@ function SiteHeader() {
     (total, item) => total + item.cantidad,
     0,
   )
-  const etiquetaCarrito = `Carrito, ${cantidadProductos} ${
+  const etiquetaCarrito = `Ver carrito, ${cantidadProductos} ${
     cantidadProductos === 1 ? 'producto' : 'productos'
   }`
 
