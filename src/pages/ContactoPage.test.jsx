@@ -20,7 +20,7 @@ describe("ContactoPage", () => {
     ).toBeInTheDocument()
   })
 
-  test("muestra el error al enviar el nombre vacío", () => {
+  test("muestra el error y no procesa el envío si el nombre está vacío", () => {
     render(<ContactoPage />)
 
     fireEvent.click(
@@ -32,7 +32,27 @@ describe("ContactoPage", () => {
     expect(
       screen.getByText("Debe ingresar su nombre."),
     ).toBeInTheDocument()
+
+    expect(
+      screen.queryByText(
+        "Demostración de Sonido Vivo: la consulta está completa, pero no se envió información real.",
+      ),
+    ).not.toBeInTheDocument()
+})
+
+  test("conserva el valor ingresado en un campo controlado", () => {
+  render(<ContactoPage />)
+
+  const campoNombre = screen.getByLabelText("Nombre")
+
+  fireEvent.change(campoNombre, {
+    target: {
+      value: "Diego",
+    },
   })
+
+  expect(campoNombre).toHaveValue("Diego")
+})
 
   test("rechaza un correo con dominio no permitido", () => {
     render(<ContactoPage />)
