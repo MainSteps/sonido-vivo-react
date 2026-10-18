@@ -1,9 +1,9 @@
 # Especificación de Requisitos de Software — Sonido Vivo V2
 
 **Versión:** 2.0 provisional  
-**Fecha de revisión:** 17 de octubre de 2026  
+**Fecha de revisión:** 18 de octubre de 2026
 **Repositorio:** `MainSteps/sonido-vivo-react`  
-**Línea base verificada:** `aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`
+**Línea base verificada:** `8dc7253e4fe99e3630a6fb262318ff76d5152a11`
 
 ## 1. Propósito
 
@@ -19,7 +19,7 @@ procesa operaciones comerciales reales.
 
 - **Visitante:** navega, consulta productos y artículos, usa formularios simulados
   y administra un carrito local.
-- **Administrador simulado:** usa el mantenedor local de productos. No existe
+- **Administrador simulado:** usa los mantenedores locales de productos y usuarios. No existe
   autorización real ni separación técnica de permisos.
 - **Equipo académico:** ejecuta pruebas, revisa cobertura y mantiene la evidencia.
 
@@ -31,6 +31,7 @@ procesa operaciones comerciales reales.
 - carrito con cantidades, stock, subtotales, total y persistencia;
 - registro, inicio de sesión y contacto simulados con validaciones;
 - CRUD local de productos ficticios;
+- CRUD local de usuarios ficticios, sin contraseñas ni información real;
 - estados vacíos, errores comprensibles y diseño adaptable;
 - pruebas automatizadas con Vitest y React Testing Library.
 
@@ -41,8 +42,7 @@ procesa operaciones comerciales reales.
 - pagos, pedidos, inventario real, despacho o facturación;
 - envío efectivo de formularios o correos;
 - almacenamiento de contraseñas o datos personales reales;
-- CRUD de usuarios en esta línea base. Está implementado y aprobado en la PR #30,
-  pero se documentará como integrado solo después de su fusión a `main`.
+- conexión con un padrón real de personas o un sistema de autenticación.
 
 ## 3. Arquitectura verificable
 
@@ -52,8 +52,8 @@ procesa operaciones comerciales reales.
 | Páginas | `src/pages` | Componer cada vista y coordinar interacciones. |
 | Componentes | `SiteHeader`, `SiteFooter`, `ProductCard`, `ProductFilters` | Reutilizar presentación y callbacks. |
 | Estado compartido | `CarritoProvider`, `CarritoContext` | Mantener y exponer el carrito a distintas rutas. |
-| Servicios | `productosService`, `carritoService` | Aplicar reglas, normalizar y persistir. |
-| Datos | `productos.js`, `contenido.js`, `regiones-comunas.js` | Proveer información ficticia inicial. |
+| Servicios | `productosService`, `carritoService`, `usuariosService` | Aplicar reglas, normalizar y persistir. |
+| Datos | `productos.js`, `usuarios.js`, `contenido.js`, `regiones-comunas.js` | Proveer información ficticia inicial. |
 | Utilidades | `validaciones.js`, `formatoPrecio.js` | Centralizar validaciones y formato monetario. |
 | Pruebas | archivos `*.test.js` y `*.test.jsx` | Comprobar lógica, eventos, estado e integración. |
 
@@ -77,6 +77,8 @@ procesa operaciones comerciales reales.
 | RF-14 | El mantenedor de productos debe listar, crear, editar y eliminar productos ficticios. | `AdminProductosPage.jsx` |
 | RF-15 | El mantenedor debe bloquear códigos duplicados, categorías inválidas, precio negativo y stock negativo o no entero. | `productosService.js` y sus pruebas |
 | RF-16 | La eliminación de productos debe pedir confirmación y la interfaz debe comunicar éxito, error o estado vacío. | `AdminProductosPage.jsx` y prueba con servicio simulado |
+| RF-17 | El mantenedor de usuarios debe listar, crear, editar y eliminar usuarios ficticios con confirmación. | `AdminUsuariosPage.jsx` y sus pruebas |
+| RF-18 | Los usuarios deben persistirse localmente y validar RUN único, nombre, apellidos, correo permitido y rol del catálogo. | `usuariosService.js` y sus pruebas |
 
 ## 5. Reglas de negocio
 
@@ -108,6 +110,15 @@ procesa operaciones comerciales reales.
 - Los límites máximos se validan antes de mostrar un resultado exitoso.
 - Ningún formulario transmite o almacena información en un servidor.
 
+### 5.4 Usuarios ficticios
+
+- El RUN identifica al usuario y debe ser válido y único.
+- Los registros iniciales de demostración no pueden cambiar su RUN.
+- Nombre, apellidos, correo y rol son obligatorios.
+- El rol debe ser `Administrador`, `Vendedor` o `Cliente`.
+- El correo debe usar uno de los dominios permitidos por las validaciones compartidas.
+- La eliminación requiere confirmación y no se almacenan contraseñas.
+
 ## 6. Rutas y estados
 
 | Ruta | Estado implementado |
@@ -122,7 +133,7 @@ procesa operaciones comerciales reales.
 | `/nosotros` | Descripción académica del proyecto. |
 | `/blog`, `/blog/:id` | Listado y detalle de contenido ficticio. |
 | `/admin/productos` | CRUD local de productos. |
-| `/admin/usuarios` | Pantalla provisional en la línea base verificada. |
+| `/admin/usuarios` | CRUD local de usuarios ficticios. |
 | `*` | Página no encontrada. |
 
 ## 7. Persistencia
@@ -131,6 +142,7 @@ procesa operaciones comerciales reales.
 | --- | --- | --- |
 | `sonidoVivoProductos` | Arreglo de productos ficticios normalizados. | Usa la semilla válida ante ausencia o corrupción. |
 | `sonidoVivoCarrito` | Pares `codigoProducto` y `cantidad`. | Devuelve un carrito vacío o normalizado ante errores. |
+| `sonidoVivoUsuarios` | Arreglo de usuarios ficticios sin contraseña. | Usa la semilla válida ante ausencia o corrupción. |
 
 `localStorage` pertenece al navegador del usuario y no sustituye una base de
 datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensible.
@@ -154,17 +166,19 @@ datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensi
 | 2. Props, estado y eventos | callbacks de tarjetas/filtros, formularios controlados y `userEvent`. |
 | 3. Enrutamiento SPA | rutas estáticas, parámetros `:id`, navegación y ruta `*`. |
 | 4. Formularios y validación | registro, login, contacto y utilidades compartidas. |
-| 5. CRUD y reglas de negocio | servicio y administración de productos; usuarios pendiente de PR #30. |
-| 6. Estado compartido y persistencia | contexto del carrito y dos claves documentadas de `localStorage`. |
-| 7. Pruebas, mocks y cobertura | 56 pruebas actuales, `vi.fn`, mock de almacenamiento e informe de cobertura. |
+| 5. CRUD y reglas de negocio | servicios y administración local de productos y usuarios. |
+| 6. Estado compartido y persistencia | contexto del carrito y tres claves documentadas de `localStorage`. |
+| 7. Pruebas, mocks y cobertura | 63 pruebas actuales, `vi.fn`, confirmación y almacenamiento simulado. |
 | 8. Trabajo colaborativo y entrega | issues, ramas, PR revisadas, README y documentos versionados. |
 
 ## 10. Trazabilidad y control de versión
 
 - La medición descrita se ejecutó sobre la línea base
-  `aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`.
-- La PR #30 de usuarios está aprobada, pero no pertenece todavía a esa línea base.
-- Después de integrar las PR restantes, se repetirán instalación, lint, pruebas,
+  `8dc7253e4fe99e3630a6fb262318ff76d5152a11`.
+- La PR #30 y el CRUD de usuarios pertenecen a esta línea base.
+- La rama `test/3-navegacion-formularios` contiene los cuatro casos de la issue #3,
+  pero todavía no forma parte de `main`.
+- Después de integrar esa PR, se repetirán instalación, lint, pruebas,
   cobertura y build.
 - La issue #16 registrará el SHA congelado que deberán compartir README, ERS,
   informe, ZIP y despliegue.

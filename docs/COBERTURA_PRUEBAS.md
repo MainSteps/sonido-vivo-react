@@ -1,7 +1,7 @@
 # Informe de pruebas y cobertura
 
-**Fecha de ejecución:** 17 de octubre de 2026  
-**Línea base:** `aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`  
+**Fecha de ejecución:** 18 de octubre de 2026
+**Línea base:** `8dc7253e4fe99e3630a6fb262318ff76d5152a11`
 **Entorno:** Vitest 5.0.4, jsdom y cobertura V8  
 **Estado:** provisional hasta integrar las PR restantes y congelar `main`
 
@@ -22,28 +22,32 @@ documento proviene de una ejecución real sobre la línea base indicada.
 
 | Verificación | Resultado |
 | --- | --- |
-| Archivos de prueba | 10 aprobados |
-| Pruebas | 56 aprobadas |
-| Sentencias | 77,84 % — 404/519 |
-| Ramas | 69,53 % — 210/302 |
-| Funciones | 91,91 % — 125/136 |
-| Líneas | 79,47 % — 395/497 |
+| Archivos de prueba | 12 aprobados |
+| Pruebas | 63 aprobadas |
+| Sentencias | 78,85 % — 522/662 |
+| Ramas | 70,95 % — 281/396 |
+| Funciones | 93,02 % — 160/172 |
+| Líneas | 80,09 % — 511/638 |
 | ESLint | Aprobado |
-| Build de Vite | Aprobado, 49 módulos transformados |
+| Build de Vite | Aprobado, 52 módulos transformados |
 
 ## 3. Doce pruebas representativas exigidas
 
-Las 56 pruebas automatizadas permanecen en la suite. La siguiente matriz identifica
+Las 63 pruebas automatizadas de la línea base permanecen en la suite. La siguiente matriz identifica
 las cuatro evidencias mínimas que cada integrante debe poder explicar.
 
 ### 3.1 Bloque de Diego — navegación y formularios
 
 | Caso | Archivo y prueba | Tipo | Qué demuestra |
 | --- | --- | --- | --- |
-| D-01 | `App.test.jsx` — `renderiza el encabezado y permite abrir el menú` | Componente + evento | Header visible y navegación operable mediante una interacción. |
-| D-02 | `App.test.jsx` — `permite agregar un producto desde el catálogo y verlo en el carrito` | Integración | Un callback reutilizable conecta tarjeta, contexto y ruta de carrito. |
-| D-03 | `RegistroPage.test.jsx` — `carga las comunas y limpia la comuna al cambiar de región` | Estado controlado | La selección modifica el estado dependiente sin manipular el DOM. |
-| D-04 | `RegistroPage.test.jsx` — `muestra el error del RUN al enviar el formulario vacío` | Validación | Un envío inválido presenta el error y no procesa el formulario. |
+| D-01 | `App.test.jsx` — `muestra la marca, los enlaces principales y permite abrir el menú` | Componente + evento | La marca, los enlaces y el estado accesible del menú responden al clic. |
+| D-02 | `ProductCard.test.jsx` — `muestra los datos recibidos y ejecuta la acción entregada` | Props + callback | La tarjeta presenta sus props y ejecuta una función simulada una vez. |
+| D-03 | `ContactoPage.test.jsx` — `conserva el valor ingresado en un campo controlado` | Estado controlado | El campo nombre refleja el valor escrito desde el estado de React. |
+| D-04 | `ContactoPage.test.jsx` — `muestra el error y no procesa el envío si el nombre está vacío` | Validación | El error aparece y el mensaje de éxito permanece ausente. |
+
+Estos cuatro casos coinciden con la rama `test/3-navegacion-formularios`, commit
+`8269e14dbdee80850a9d0b642058690b32dd69d9`. Todavía no se contabilizan en la
+línea base porque la issue #3 no ha sido fusionada a `main`.
 
 ### 3.2 Bloque de Matías — productos y catálogo
 
@@ -88,8 +92,8 @@ entre pruebas.
 | --- | ---: | ---: | ---: | ---: |
 | Componentes | 90,47 % | 75,00 % | 92,85 % | 95,00 % |
 | Contexto | 79,54 % | 61,53 % | 100,00 % | 81,39 % |
-| Páginas | 70,96 % | 62,96 % | 85,71 % | 71,07 % |
-| Servicios | 83,90 % | 75,83 % | 97,61 % | 88,12 % |
+| Páginas | 74,19 % | 68,88 % | 87,80 % | 74,17 % |
+| Servicios | 82,21 % | 72,78 % | 98,30 % | 84,93 % |
 | Utilidades | 84,61 % | 77,27 % | 100,00 % | 84,61 % |
 
 ## 6. Interpretación
@@ -100,7 +104,7 @@ entre pruebas.
 - **Líneas** mide líneas ejecutables alcanzadas.
 
 La cobertura no demuestra por sí sola que el programa sea correcto. La métrica más
-baja es ramas, con 69,53 %, porque todavía existen alternativas de error y campos
+baja es ramas, con 70,95 %, porque todavía existen alternativas de error y campos
 del formulario de registro sin casos específicos. Esto se registra como riesgo, no
 se oculta ni se reemplaza con un porcentaje inventado.
 
@@ -108,8 +112,10 @@ se oculta ni se reemplaza con un porcentaje inventado.
 
 - `RegistroPage.jsx` concentra la mayor parte de las líneas y ramas no cubiertas.
 - Faltan casos dedicados a algunos errores de escritura en `localStorage`.
-- La PR #30 añade el CRUD y las pruebas de usuarios. Al fusionarse cambiará el total
-  de archivos, pruebas y porcentajes; por eso debe repetirse la medición.
+- El CRUD de usuarios ya está incluido; sus ramas alternativas aún ofrecen espacio
+  para aumentar la cobertura.
+- La issue #3 está publicada como rama, pero aún no tiene PR fusionada. Al integrarse
+  cambiará el total de pruebas y debe repetirse la medición final.
 - Las comprobaciones responsivas y de consola son manuales y deben registrarse en
   el checklist de la issue #16.
 - La URL pública y el SHA final todavía dependen del congelamiento de la entrega.

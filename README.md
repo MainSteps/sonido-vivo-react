@@ -47,7 +47,7 @@ npm run preview
 | `/nosotros` | Información académica del proyecto. |
 | `/blog` y `/blog/:id` | Artículos ficticios y sus detalles. |
 | `/admin/productos` | CRUD local de productos ficticios. |
-| `/admin/usuarios` | Ruta reservada; el CRUD de usuarios se integra mediante la PR #30. |
+| `/admin/usuarios` | CRUD local de usuarios ficticios con validación y confirmación. |
 
 Las direcciones inexistentes presentan una página de error comprensible.
 
@@ -62,9 +62,10 @@ Las direcciones inexistentes presentan una página de error comprensible.
 - `src/**/*.test.*`: pruebas unitarias y de interacción con Vitest.
 - `docs`: ERS, evidencia de pruebas y cobertura.
 
-La persistencia usa `localStorage` con las claves `sonidoVivoProductos` y
-`sonidoVivoCarrito`. Los servicios normalizan la información y recuperan un estado
-seguro si el almacenamiento está vacío, corrupto o no disponible.
+La persistencia usa `localStorage` con las claves `sonidoVivoProductos`,
+`sonidoVivoCarrito` y `sonidoVivoUsuarios`. Los servicios normalizan la información
+y recuperan un estado seguro si el almacenamiento está vacío, corrupto o no
+disponible.
 
 ## Documentación de entrega
 
@@ -76,11 +77,12 @@ seguro si el almacenamiento está vacío, corrupto o no disponible.
 
 ## Estado de la evidencia
 
-La medición provisional del 17 de octubre de 2026 corresponde al commit de
-aplicación `aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`: 10 archivos y 56 pruebas
-aprobadas, 77,84 % de sentencias, 69,53 % de ramas, 91,91 % de funciones y
-79,47 % de líneas. La medición final se repetirá después de integrar todas las PR
-y el SHA definitivo se registrará durante la issue #16.
+La medición provisional del 18 de octubre de 2026 corresponde al commit de
+aplicación `8dc7253e4fe99e3630a6fb262318ff76d5152a11`: 12 archivos y 63 pruebas
+aprobadas, 78,85 % de sentencias, 70,95 % de ramas, 93,02 % de funciones y
+80,09 % de líneas. La medición final se repetirá después de integrar las pruebas
+de navegación y formularios de la issue #3; el SHA definitivo se registrará
+durante la issue #16.
 
 ## Límites del sistema
 

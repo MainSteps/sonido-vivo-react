@@ -24,7 +24,7 @@ PR #26. Las pruebas usan consultas centradas en el usuario, eventos reales de
 
 ## Resultado de la suite
 
-Comandos ejecutados nuevamente el 17 de octubre de 2026:
+Comandos ejecutados nuevamente el 18 de octubre de 2026:
 
 ```bash
 npm run test:run
@@ -34,14 +34,14 @@ npm run build
 ```
 
 Resultado comprobado sobre `main`, commit
-`aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`:
+`8dc7253e4fe99e3630a6fb262318ff76d5152a11`:
 
-- 10 archivos de prueba aprobados.
-- 56 pruebas aprobadas.
-- 77,84 % de sentencias.
-- 69,53 % de ramas.
-- 91,91 % de funciones.
-- 79,47 % de líneas.
+- 12 archivos de prueba aprobados.
+- 63 pruebas aprobadas.
+- 78,85 % de sentencias.
+- 70,95 % de ramas.
+- 93,02 % de funciones.
+- 80,09 % de líneas.
 - ESLint aprobado.
 - Build de producción aprobado.
 
