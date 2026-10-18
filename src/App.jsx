@@ -14,6 +14,7 @@ import NosotrosPage from './pages/NosotrosPage.jsx'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import ProductoDetallePage from './pages/ProductoDetallePage.jsx'
 import RegistroPage from './pages/RegistroPage.jsx'
+import AdminUsuariosPage from './pages/AdminUsuariosPage.jsx'
 
 function App() {
   return (
@@ -37,15 +38,7 @@ function App() {
 
           <Route path="/admin/productos" element={<AdminProductosPage />} />
 
-          <Route
-            path="/admin/usuarios"
-            element={
-              <PlaceholderPage
-                title="Administrar usuarios"
-                description="Aquí se realizará el CRUD de usuarios."
-              />
-            }
-          />
+          <Route path="/admin/usuarios" element={<AdminUsuariosPage />} />
 
           <Route
             path="*"
