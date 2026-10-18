@@ -13,20 +13,22 @@ El mock de `Storage.getItem` comprueba que una falla de lectura no rompe la apli
 
 ## Resultado de la suite
 
-Comando ejecutado:
+Comandos ejecutados nuevamente el 17 de octubre de 2026 sobre `main`, commit
+`aaea16287ffe60f9cba702c7d0cdbe9b47a9690e`:
 
 ```bash
-./node_modules/.bin/vitest run --coverage
+npm run test:coverage
+npm run lint
+npm run build
 ```
 
 Resultado:
 
-- 8 archivos de prueba aprobados.
-- 43 pruebas aprobadas.
-- 73,96 % de sentencias.
-- 64,70 % de ramas.
-- 89,88 % de funciones.
-- 75,50 % de líneas.
+- 10 archivos de prueba aprobados.
+- 56 pruebas aprobadas.
+- 77,84 % de sentencias.
+- 69,53 % de ramas.
+- 91,91 % de funciones.
+- 79,47 % de líneas.
 
-También se ejecutaron `./node_modules/.bin/eslint .` y
-`./node_modules/.bin/vite build` sin errores.
+ESLint y el build de Vite finalizaron sin errores.
