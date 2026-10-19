@@ -1,0 +1,59 @@
+
+> sonido-vivo-react@0.0.0 test:coverage
+> vitest run --coverage
+
+
+ RUN  v5.0.4 /Users/pau/Documents/Codex/2026-10-18/ho/work/qa15
+      Coverage enabled with v8
+
+
+ Test Files  13 passed (13)
+      Tests  65 passed (65)
+   Start at  22:07:28
+   Duration  3.71s (environment 49%, tests 33%, setup 7%, import 4%, transform 4%, worker 3%)
+
+Environment  jsdom was created 13 times · 7.09s total, 49% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   78.85 |    70.95 |   93.02 |   80.09 |                   
+ src/components    |   90.47 |       75 |   92.85 |      95 |                   
+  ProductCard.jsx  |      75 |       50 |     100 |     100 | 18-26             
+  ...ctFilters.jsx |      80 |      100 |      80 |      80 | 3                 
+ src/context       |   79.54 |    61.53 |     100 |   81.39 |                   
+  ...itoContext.js |      80 |       50 |     100 |      80 | 9                 
+  ...oProvider.jsx |   79.48 |    63.63 |     100 |   81.57 | 47-48,71-72,87-89 
+ src/pages         |   74.19 |    68.88 |    87.8 |   74.17 |                   
+  ...uctosPage.jsx |   88.88 |    91.11 |   94.11 |   91.83 | 81-82,93-94       
+  ...ariosPage.jsx |   87.09 |    86.66 |   94.73 |   86.66 | ...35-139,143,147 
+  BlogPage.jsx     |     100 |       50 |     100 |     100 | 20                
+  CarritoPage.jsx  |     100 |    83.33 |     100 |     100 | 12                
+  CatalogoPage.jsx |   81.81 |     62.5 |      80 |   81.81 | 20-21             
+  ContactoPage.jsx |   77.14 |    71.42 |     100 |   77.14 | ...45,59-62,66-69 
+  InicioPage.jsx   |     100 |       50 |     100 |     100 | 57                
+  ...esionPage.jsx |   78.57 |       70 |     100 |   78.57 | 35-38,49-52,56-59 
+  ...tallePage.jsx |     100 |       60 |     100 |     100 | 45-58             
+  RegistroPage.jsx |   43.18 |    19.44 |   46.15 |   43.18 | ...66,198-286,365 
+ src/services      |   82.21 |    72.78 |    98.3 |   84.93 |                   
+  ...itoService.js |   84.61 |       75 |   94.44 |   87.93 | ...03,138,149-151 
+  ...tosService.js |   83.48 |    76.38 |     100 |   88.23 | ...23,236,243,261 
+  ...iosService.js |   78.48 |     65.3 |     100 |   78.48 | ...07,216,235,246 
+ src/utils         |   84.61 |    77.27 |     100 |   84.61 |                   
+  validaciones.js  |      84 |    77.27 |     100 |      84 | 16,26,49,53       
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 78.85% ( 522/662 )
+Branches     : 70.95% ( 281/396 )
+Functions    : 93.02% ( 160/172 )
+Lines        : 80.09% ( 511/638 )
+================================================================================
+npm notice
+npm notice New major version of npm available! 11.6.2 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
