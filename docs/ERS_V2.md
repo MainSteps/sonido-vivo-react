@@ -1,17 +1,18 @@
 # Especificación de Requisitos de Software — Sonido Vivo V2
 
-**Versión:** 2.1 — revisión técnica; congelamiento de entrega pendiente
-**Fecha de revisión:** 18 de octubre de 2026
+**Versión:** 2.2 — candidata final revisada contra la pauta
+**Fecha de revisión:** 19 de octubre de 2026
 **Repositorio:** `MainSteps/sonido-vivo-react`
-**Línea base verificada:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`
+**Base de la corrección final:** `b45b2dd78e82559b2f3b0ee0c840cb16c70d4a57`
+**SHA definitivo:** registrado en la issue #16 después del merge
 
 ## 1. Propósito
 
 Sonido Vivo es una tienda musical ficticia creada para demostrar el uso de React,
 componentes reutilizables, rutas, formularios controlados, estado compartido,
 persistencia local y pruebas automatizadas. Esta ERS describe las funciones identificadas mediante revisión del código y
-las pruebas disponibles en la línea base indicada. Cada evidencia distingue
-implementación, prueba automatizada y comprobación manual pendiente. La aplicación no representa una empresa ni
+las pruebas disponibles en la candidata final. Cada evidencia distingue
+implementación, prueba automatizada y comprobación manual. La aplicación no representa una empresa ni
 procesa operaciones comerciales reales.
 
 ## 2. Alcance y actores
@@ -51,7 +52,7 @@ procesa operaciones comerciales reales.
 | --- | --- | --- |
 | Rutas | `App.jsx`, React Router | Relacionar URL y pantalla sin recarga completa. |
 | Páginas | `src/pages` | Componer cada vista y coordinar interacciones. |
-| Componentes | `SiteHeader`, `SiteFooter`, `ProductCard`, `ProductFilters` | Reutilizar presentación y callbacks. |
+| Componentes | `SiteHeader`, `SiteFooter`, `AdminNavigation`, `ProductCard`, `ProductFilters` | Reutilizar presentación, navegación y callbacks. |
 | Estado compartido | `CarritoProvider`, `CarritoContext` | Mantener y exponer el carrito a distintas rutas. |
 | Servicios | `productosService`, `carritoService`, `usuariosService` | Aplicar reglas, normalizar y persistir. |
 | Datos | `productos.js`, `usuarios.js`, `contenido.js`, `regiones-comunas.js` | Proveer información ficticia inicial. |
@@ -80,6 +81,7 @@ procesa operaciones comerciales reales.
 | RF-16 | La eliminación de productos debe pedir confirmación y la interfaz debe comunicar éxito, error o estado vacío. | `AdminProductosPage.jsx` y prueba con servicio simulado |
 | RF-17 | El mantenedor de usuarios debe listar, crear, editar y eliminar usuarios ficticios con confirmación. | `AdminUsuariosPage.jsx` y sus pruebas |
 | RF-18 | Los usuarios deben persistirse localmente y validar RUN único, nombre, apellidos, correo permitido y rol del catálogo. | `usuariosService.js` y sus pruebas |
+| RF-19 | Las vistas administrativas deben permitir navegar entre productos, usuarios y la tienda pública mediante enlaces visibles. | `AdminNavigation.jsx`, `App.test.jsx` |
 
 ## 5. Reglas de negocio
 
@@ -163,43 +165,45 @@ datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensi
 | RNF-05 | La entrega debe aprobar lint, pruebas y build. | Informe `COBERTURA_PRUEBAS.md`. |
 | RNF-06 | El repositorio no debe contener secretos, `node_modules`, `dist` ni cobertura generada. | `.gitignore` y revisión de entrega. |
 
-## 9. Matriz interna de evidencia
+## 9. Matriz de evidencia de la rúbrica
 
-Esta agrupación facilita la trazabilidad interna. No sustituye el texto de la
-rúbrica docente: la pauta original no está incluida entre las fuentes revisadas
-y su correspondencia exacta debe confirmarse antes de la entrega.
+La matriz se contrastó con la pauta de evaluación, el anexo de instrucciones y
+el aviso de AVA de la Evaluación Parcial 2. Los cuatro primeros indicadores son
+grupales; los cuatro últimos se califican durante la presentación individual.
 
-| Área | Evidencia identificable |
+| Indicador | Evidencia preparada |
 | --- | --- |
-| 1. Componentes React reutilizables | `SiteHeader`, `SiteFooter`, `ProductCard`, `ProductFilters`. |
-| 2. Props, estado y eventos | callbacks de tarjetas/filtros, formularios controlados y `userEvent`. |
-| 3. Enrutamiento SPA | rutas estáticas, parámetros `:id`, navegación y ruta `*`. |
-| 4. Formularios y validación | registro, login, contacto y utilidades compartidas. |
-| 5. CRUD y reglas de negocio | servicios y administración local de productos y usuarios. |
-| 6. Estado compartido y persistencia | contexto del carrito y tres claves documentadas de `localStorage`. |
-| 7. Pruebas, mocks y cobertura | 65 pruebas actuales, `vi.fn`, confirmación y almacenamiento simulado. |
-| 8. Trabajo colaborativo y entrega | issues, ramas, PR revisadas, README y documentos versionados. |
+| IE2.1.1 — diseño del proyecto con framework frontend | React y Vite, rutas SPA, estructura por páginas, componentes, servicios, CRUD, formularios, carrito y persistencia local. |
+| IE2.1.2 — componentes, propiedades, estados y responsividad | Componentes reutilizables, callbacks por props, formularios controlados, contexto del carrito, media queries y capturas a 360, 768 y 1280 px. |
+| IE2.2.1 — pruebas unitarias con Vitest | 66 pruebas aprobadas, incluidas las categorías exigidas de renderizado, renderizado condicional, props, estado y eventos. |
+| IE2.3.1 — proceso de pruebas | Entorno jsdom, React Testing Library, `vi.fn`, `vi.spyOn`, almacenamiento simulado, resultados reproducibles y cobertura V8. |
+| IE2.1.3 — exposición del diseño React | Arquitectura, rutas y flujo de datos documentados para la defensa individual. |
+| IE2.1.4 — demostración de componentes | Ejemplos reales de props, estado, eventos y adaptación responsiva identificados en el código. |
+| IE2.2.2 — demostración de pruebas | Doce casos representativos distribuidos entre los tres integrantes y suite completa ejecutable. |
+| IE2.3.2 — explicación del proceso | Comandos, dobles de prueba, resultados y lectura de cobertura documentados. |
 
 ## 10. Trazabilidad y control de versión
 
-- La medición descrita se ejecutó sobre la línea base
-  `0baec31fa451d9e36a0e4524e3f43f00b2202e67`.
-- La PR #30 y el CRUD de usuarios pertenecen a esta línea base.
-- La PR #32 integra las pruebas de navegación y formularios de la issue #3.
-- Se repitieron instalación limpia, lint, suite con cobertura y build sobre una
-  copia de la rama documental actualizada con esta línea base: 13 archivos y
-  65 pruebas aprobadas; el informe registra las métricas.
+- La corrección final parte de
+  `b45b2dd78e82559b2f3b0ee0c840cb16c70d4a57` y no modifica las reglas de
+  negocio ni la arquitectura de servicios.
+- La candidata agrega navegación visible entre ambos CRUD administrativos,
+  restaura las seis descripciones originales de productos y prueba el recorrido.
+- Se repitieron instalación limpia, lint, suite, cobertura y build: 13 archivos
+  y 66 pruebas aprobadas; el informe registra las métricas exactas.
 - La PR #33 incorporó la configuración de Vercel y la evidencia del despliegue
   público en `https://sonido-vivo-react.vercel.app`.
-- La issue #16 registrará el SHA congelado que deberán compartir README, ERS,
-  informe, ZIP y despliegue final.
+- La issue #16 registra el SHA congelado que deben compartir documentación, ZIP
+  y despliegue final. Mantenerlo fuera del propio commit evita una referencia
+  circular imposible de sostener dentro de los archivos versionados.
 
 ## 11. Criterio de cierre de esta versión
 
-Esta ERS pasa de provisional a final cuando el equipo integra las funciones
-obligatorias, revisa la matriz, repite la suite sobre `main` y registra un único SHA
-de entrega. Cualquier función no fusionada debe permanecer declarada como pendiente
-o excluida, nunca como implementada.
+Esta ERS contiene el alcance final verificado. El cierre operativo exige fusionar
+la corrección mediante PR, repetir los comandos sobre `main`, comprobar el
+redeploy, generar el ZIP desde ese mismo SHA y registrar las tres aprobaciones en
+la issue #16. Cualquier cambio posterior al congelamiento debe quedar autorizado
+y documentado.
 
 ## 12. Límites verificados de la implementación
 

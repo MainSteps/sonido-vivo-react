@@ -15,7 +15,7 @@ export const PRODUCTOS_INICIALES = [
     stock: 8,
     imagen: '/images/producto-guitarra.svg',
     descripcion:
-      'Guitarra de cuerpo sólido con configuración HSS y selector de cinco posiciones.',
+      'Guitarra de cuerpo sólido con configuración HSS y selector de cinco posiciones. Una opción versátil para practicar y tocar en vivo.',
   },
   {
     codigo: 'SV-BAJ-002',
@@ -25,7 +25,7 @@ export const PRODUCTOS_INICIALES = [
     stock: 5,
     imagen: '/images/producto-bajo.svg',
     descripcion:
-      'Bajo de cuatro cuerdas con controles de volumen y tono para ensayos prolongados.',
+      'Bajo de cuatro cuerdas con controles de volumen y tono. Ofrece una construcción cómoda para ensayos prolongados.',
   },
   {
     codigo: 'SV-TEC-003',
@@ -35,7 +35,7 @@ export const PRODUCTOS_INICIALES = [
     stock: 10,
     imagen: '/images/producto-teclado.svg',
     descripcion:
-      'Teclado de 61 teclas sensibles a la velocidad, sonidos integrados y conexión USB.',
+      'Teclado de 61 teclas sensibles a la velocidad, sonidos integrados y conexión USB para comenzar a producir música.',
   },
   {
     codigo: 'SV-AUD-004',
@@ -45,7 +45,7 @@ export const PRODUCTOS_INICIALES = [
     stock: 16,
     imagen: '/images/producto-microfono.svg',
     descripcion:
-      'Micrófono dinámico cardioide para voces, ensayos y presentaciones.',
+      'Micrófono dinámico cardioide para voces, diseñado para reducir el ruido ambiente durante ensayos y presentaciones.',
   },
   {
     codigo: 'SV-AUD-005',
@@ -55,7 +55,7 @@ export const PRODUCTOS_INICIALES = [
     stock: 12,
     imagen: '/images/producto-audifonos.svg',
     descripcion:
-      'Audífonos cerrados con respuesta equilibrada para monitoreo y práctica silenciosa.',
+      'Audífonos cerrados con almohadillas suaves y respuesta equilibrada para monitoreo, edición y práctica silenciosa.',
   },
   {
     codigo: 'SV-ACC-006',
@@ -65,6 +65,6 @@ export const PRODUCTOS_INICIALES = [
     stock: 7,
     imagen: '/images/producto-pedal.svg',
     descripcion:
-      'Pedal de delay compacto con controles de tiempo, repetición y mezcla.',
+      'Pedal de delay compacto con controles de tiempo, repetición y mezcla para explorar nuevas texturas sonoras.',
   },
 ]

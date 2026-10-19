@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, test, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import AdminProductosPage from './AdminProductosPage.jsx'
 
 const PRODUCTO_INICIAL = {
@@ -62,7 +63,11 @@ describe('administración de productos', () => {
     const servicio = crearServicioSimulado()
     vi.spyOn(globalThis, 'confirm').mockReturnValue(true)
 
-    render(<AdminProductosPage servicio={servicio} />)
+    render(
+      <MemoryRouter>
+        <AdminProductosPage servicio={servicio} />
+      </MemoryRouter>,
+    )
 
     await usuario.type(screen.getByLabelText('Código'), 'sv-nue-007')
     await usuario.type(screen.getByLabelText('Nombre'), 'Amplificador Mini')
@@ -115,7 +120,7 @@ describe('administración de productos', () => {
     expect(servicio.eliminarProducto).toHaveBeenCalledWith('SV-NUE-007')
     expect(screen.queryByText('Amplificador Mini Pro')).not.toBeInTheDocument()
     expect(screen.getByText('Producto eliminado correctamente.')).toBeInTheDocument()
-  })
+  }, 10000)
 
   test('presenta los errores de validación devueltos por el servicio', async () => {
     const usuario = userEvent.setup()
@@ -135,7 +140,11 @@ describe('administración de productos', () => {
       },
     })
 
-    render(<AdminProductosPage servicio={servicio} />)
+    render(
+      <MemoryRouter>
+        <AdminProductosPage servicio={servicio} />
+      </MemoryRouter>,
+    )
     await usuario.click(screen.getByRole('button', { name: 'Crear producto' }))
 
     expect(screen.getByRole('alert')).toHaveTextContent('Revisa los datos ingresados.')

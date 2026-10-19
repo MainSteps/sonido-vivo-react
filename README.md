@@ -79,21 +79,24 @@ a cada navegador y no se comparten entre equipos.
 - [Pruebas del carrito](docs/pruebas-carrito.md)
 - [Verificación local y estado de entrega](docs/VERIFICACION_ENTREGA.md)
 - [QA desde copia limpia y despliegue público](docs/qa-15/README.md)
+- [Resumen de entrega final](docs/ENTREGA_FINAL.md)
 
 ## Estado de la evidencia
 
-La medición provisional del 18 de octubre de 2026 corresponde al commit de
-aplicación `0baec31fa451d9e36a0e4524e3f43f00b2202e67`: 13 archivos y 65 pruebas
-aprobadas, 78,85 % de sentencias, 70,95 % de ramas, 93,02 % de funciones y
-80,09 % de líneas. La medición incluye la PR #32 de navegación y formularios. Instalación limpia,
-lint, suite con cobertura y build fueron comprobados.
+La candidata final de la issue #16 se verificó el 19 de octubre de 2026 sobre
+la base `b45b2dd78e82559b2f3b0ee0c840cb16c70d4a57` y la corrección final de
+navegación administrativa y fidelidad de contenido. La ejecución obtuvo 13
+archivos y 66 pruebas aprobadas, 78,97 % de sentencias, 71,10 % de ramas,
+93,14 % de funciones y 80,21 % de líneas. Instalación limpia, lint, suite,
+cobertura, build y auditoría de dependencias fueron comprobados; `npm audit`
+informó 0 vulnerabilidades.
 
 La aplicación está publicada en [sonido-vivo-react.vercel.app](https://sonido-vivo-react.vercel.app).
-La verificación pública de rutas, recargas e interacciones corresponde al commit
-`4486c4752130d69488b2176a55d0f3e2a2736b07` y está documentada en
-`docs/qa-15/README.md`. El SHA definitivo de entrega se registrará durante la
-issue #16 después de integrar la documentación y congelar `main`. La revisión
-local de cinco pantallas a 360, 768 y 1280 px se documenta en
+La verificación pública de rutas, recargas e interacciones está documentada en
+`docs/qa-15/README.md`. El SHA definitivo, la comprobación del redeploy y el
+checksum del ZIP generado desde ese mismo SHA se registran en la issue #16
+después de fusionar la corrección final. La revisión local de cinco pantallas a
+360, 768 y 1280 px se documenta en
 `docs/VERIFICACION_ENTREGA.md`, con capturas.
 
 ## Límites del sistema

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AdminNavigation from '../components/AdminNavigation.jsx'
 import { rolesUsuario } from '../data/usuarios.js'
 import * as usuariosService from '../services/usuariosService.js'
 
@@ -157,6 +158,8 @@ function AdminUsuariosPage({
 
   return (
     <main className="admin-products-page admin-users-page">
+      <AdminNavigation />
+
       <header className="admin-products-header">
         <div>
           <p className="eyebrow">
