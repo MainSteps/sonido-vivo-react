@@ -1,0 +1,137 @@
+[
+  {
+    "route": "/productos",
+    "viewportWidth": 360,
+    "viewportHeight": 800,
+    "documentScrollWidth": 360,
+    "heading": "Encuentra tu próximo sonido",
+    "failedImages": [],
+    "screenshot": "productos-360.png"
+  },
+  {
+    "route": "/registro",
+    "viewportWidth": 360,
+    "viewportHeight": 800,
+    "documentScrollWidth": 360,
+    "heading": "Registro de usuario",
+    "failedImages": [],
+    "screenshot": "registro-360.png"
+  },
+  {
+    "route": "/admin/productos",
+    "viewportWidth": 360,
+    "viewportHeight": 800,
+    "documentScrollWidth": 360,
+    "heading": "Productos",
+    "failedImages": [],
+    "screenshot": "admin-productos-360.png"
+  },
+  {
+    "route": "/admin/usuarios",
+    "viewportWidth": 360,
+    "viewportHeight": 800,
+    "documentScrollWidth": 360,
+    "heading": "Usuarios",
+    "failedImages": [],
+    "screenshot": "admin-usuarios-360.png"
+  },
+  {
+    "route": "/carrito",
+    "viewportWidth": 360,
+    "viewportHeight": 800,
+    "documentScrollWidth": 360,
+    "heading": "Tu carrito",
+    "failedImages": [],
+    "screenshot": "carrito-360.png"
+  },
+  {
+    "route": "/productos",
+    "viewportWidth": 768,
+    "viewportHeight": 800,
+    "documentScrollWidth": 768,
+    "heading": "Encuentra tu próximo sonido",
+    "failedImages": [],
+    "screenshot": "productos-768.png"
+  },
+  {
+    "route": "/registro",
+    "viewportWidth": 768,
+    "viewportHeight": 800,
+    "documentScrollWidth": 768,
+    "heading": "Registro de usuario",
+    "failedImages": [],
+    "screenshot": "registro-768.png"
+  },
+  {
+    "route": "/admin/productos",
+    "viewportWidth": 768,
+    "viewportHeight": 800,
+    "documentScrollWidth": 768,
+    "heading": "Productos",
+    "failedImages": [],
+    "screenshot": "admin-productos-768.png"
+  },
+  {
+    "route": "/admin/usuarios",
+    "viewportWidth": 768,
+    "viewportHeight": 800,
+    "documentScrollWidth": 768,
+    "heading": "Usuarios",
+    "failedImages": [],
+    "screenshot": "admin-usuarios-768.png"
+  },
+  {
+    "route": "/carrito",
+    "viewportWidth": 768,
+    "viewportHeight": 800,
+    "documentScrollWidth": 768,
+    "heading": "Tu carrito",
+    "failedImages": [],
+    "screenshot": "carrito-768.png"
+  },
+  {
+    "route": "/productos",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "documentScrollWidth": 1280,
+    "heading": "Encuentra tu próximo sonido",
+    "failedImages": [],
+    "screenshot": "productos-1280.png"
+  },
+  {
+    "route": "/registro",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "documentScrollWidth": 1280,
+    "heading": "Registro de usuario",
+    "failedImages": [],
+    "screenshot": "registro-1280.png"
+  },
+  {
+    "route": "/admin/productos",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "documentScrollWidth": 1280,
+    "heading": "Productos",
+    "failedImages": [],
+    "screenshot": "admin-productos-1280.png"
+  },
+  {
+    "route": "/admin/usuarios",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "documentScrollWidth": 1280,
+    "heading": "Usuarios",
+    "failedImages": [],
+    "screenshot": "admin-usuarios-1280.png"
+  },
+  {
+    "route": "/carrito",
+    "viewportWidth": 1280,
+    "viewportHeight": 800,
+    "documentScrollWidth": 1280,
+    "heading": "Tu carrito",
+    "failedImages": [],
+    "screenshot": "carrito-1280.png"
+  }
+]

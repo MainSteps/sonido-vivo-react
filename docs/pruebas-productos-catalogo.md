@@ -24,23 +24,24 @@ PR #26. Las pruebas usan consultas centradas en el usuario, eventos reales de
 
 ## Resultado de la suite
 
-Comandos ejecutados el 16 de octubre de 2026:
+Comandos ejecutados nuevamente el 18 de octubre de 2026:
 
 ```bash
-pnpm run test:run
-pnpm run test:coverage
-pnpm run lint
-pnpm run build
+npm run test:run
+npm run test:coverage
+npm run lint
+npm run build
 ```
 
-Resultado comprobado sobre la rama `feat/8-crud-productos`:
+Resultado comprobado sobre `main`, commit
+`0baec31fa451d9e36a0e4524e3f43f00b2202e67`:
 
-- 10 archivos de prueba aprobados.
-- 50 pruebas aprobadas.
-- 76,41 % de sentencias.
-- 68,83 % de ramas.
-- 90,24 % de funciones.
-- 78,10 % de líneas.
+- 13 archivos de prueba aprobados.
+- 65 pruebas aprobadas.
+- 78,85 % de sentencias.
+- 70,95 % de ramas.
+- 93,02 % de funciones.
+- 80,09 % de líneas.
 - ESLint aprobado.
 - Build de producción aprobado.
 
