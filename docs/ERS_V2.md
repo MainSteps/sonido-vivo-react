@@ -156,7 +156,7 @@ datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensi
 
 | ID | Requisito | Verificación |
 | --- | --- | --- |
-| RNF-01 | La interfaz debe ser utilizable a 360, 768 y 1280 px. | Revisión local de catálogo, registro, mantenedores y carrito vacío en los tres anchos; capturas y alcance en `VERIFICACION_ENTREGA.md`. Falta validación pública. |
+| RNF-01 | La interfaz debe ser utilizable a 360, 768 y 1280 px. | Revisión local de catálogo, registro, mantenedores y carrito vacío en los tres anchos; capturas en `VERIFICACION_ENTREGA.md`. La navegación pública y las recargas están verificadas en `docs/qa-15/README.md`. |
 | RNF-02 | Los controles deben tener etiquetas y los errores deben ser perceptibles. | Hay etiquetas en formularios y atributos ARIA en mantenedores; registro, login y contacto aún requieren verificar y completar la asociación accesible de errores. |
 | RNF-03 | Un fallo de almacenamiento no debe producir una pantalla rota. | `try/catch` y pruebas de JSON corrupto. |
 | RNF-04 | Las rutas y componentes deben evitar manipulación directa del DOM. | Estado React, props, contexto y servicios. |
@@ -189,8 +189,10 @@ y su correspondencia exacta debe confirmarse antes de la entrega.
 - Se repitieron instalación limpia, lint, suite con cobertura y build sobre una
   copia de la rama documental actualizada con esta línea base: 13 archivos y
   65 pruebas aprobadas; el informe registra las métricas.
+- La PR #33 incorporó la configuración de Vercel y la evidencia del despliegue
+  público en `https://sonido-vivo-react.vercel.app`.
 - La issue #16 registrará el SHA congelado que deberán compartir README, ERS,
-  informe, ZIP y despliegue.
+  informe, ZIP y despliegue final.
 
 ## 11. Criterio de cierre de esta versión
 
@@ -230,9 +232,9 @@ o excluida, nunca como implementada.
   proveedor no comunica ese resultado a la interfaz. No se garantiza persistencia
   cuando el navegador deniega el almacenamiento.
 - Se realizó una revisión local limitada de tamaños e interacciones, documentada
-  en `VERIFICACION_ENTREGA.md`. La revisión de rutas directas y recarga en hosting
-  y la auditoría completa de accesibilidad siguen pendientes. `BrowserRouter` requiere
-  configurar el hosting para servir `index.html` en rutas de la aplicación.
+  en `VERIFICACION_ENTREGA.md`. La PR #33 verificó rutas directas y recargas en
+  Vercel mediante el fallback de `vercel.json`. La auditoría completa de
+  accesibilidad continúa fuera del alcance de esta revisión.
 
 Estas observaciones describen el alcance actual; no se presentan como funciones
 implementadas ni como comprobaciones manuales aprobadas.
