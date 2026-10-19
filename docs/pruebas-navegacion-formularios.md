@@ -10,21 +10,22 @@
 | Un envío inválido muestra un mensaje | Se envía contacto sin nombre; aparece el error y no aparece el mensaje de éxito. | `muestra el error y no procesa el envío si el nombre está vacío` |
 
 Los casos están en `src/App.test.jsx`, `src/components/ProductCard.test.jsx` y
-`src/pages/ContactoPage.test.jsx` de la rama `test/3-navegacion-formularios`,
-commit `8269e14dbdee80850a9d0b642058690b32dd69d9`. Se utilizan consultas por rol o
-etiqueta, `userEvent`, `fireEvent` y `vi.fn`, evitando comprobar detalles internos.
+`src/pages/ContactoPage.test.jsx`. Se integraron a `main` mediante la PR #32.
+D-01 y D-02 usan `userEvent`; las pruebas de contacto usan `fireEvent`.
 
 ## Independencia
 
 - Cada prueba crea un árbol nuevo de componentes.
-- `localStorage` se limpia mediante la configuración común de la suite.
+- `App.test.jsx` limpia `localStorage` en su `beforeEach`; la configuración
+  común solo importa los matchers de jest-dom. Los casos aislados de tarjeta
+  y contacto no requieren persistencia.
 - Los eventos se ejecutan con `userEvent` o `fireEvent` según el alcance del caso.
 - Ningún caso requiere el resultado de una prueba anterior.
 
 ## Resultado de la suite
 
 Comandos ejecutados el 18 de octubre de 2026 sobre `main`, commit
-`8dc7253e4fe99e3630a6fb262318ff76d5152a11`:
+`0baec31fa451d9e36a0e4524e3f43f00b2202e67`:
 
 ```bash
 npm run test:run
@@ -33,16 +34,18 @@ npm run lint
 npm run build
 ```
 
-- 12 archivos de prueba aprobados.
-- 63 pruebas aprobadas.
+- 13 archivos de prueba aprobados.
+- 65 pruebas aprobadas.
 - 78,85 % de sentencias.
 - 70,95 % de ramas.
 - 93,02 % de funciones.
 - 80,09 % de líneas.
 - ESLint y build aprobados.
 
-Esta medición todavía no incluye los cuatro casos anteriores porque la rama de la
-issue #3 no ha sido fusionada. Después de su PR se repetirá la cobertura final.
+Esta medición incluye los cuatro casos anteriores y se obtuvo mediante
+`npm run test:coverage`, que ejecuta toda la suite. Las cuatro evidencias
+representativas no equivalen a cuatro pruebas adicionales: dos amplían casos
+existentes y dos agregan casos nuevos.
 
 ## Conceptos para explicar
 

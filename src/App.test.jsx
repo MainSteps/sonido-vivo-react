@@ -23,7 +23,7 @@ describe('Rutas de la aplicación', () => {
     ).toBeInTheDocument()
   })
 
-  test('renderiza el encabezado y permite abrir el menú', async () => {
+  test('muestra la marca, los enlaces principales y permite abrir el menú', async () => {
     const usuario = userEvent.setup()
 
     render(
@@ -31,6 +31,10 @@ describe('Rutas de la aplicación', () => {
         <App />
       </MemoryRouter>,
     )
+
+    expect(
+      screen.getByRole('link', { name: 'Sonido Vivo, inicio' }),
+    ).toBeInTheDocument()
 
     const navegacion = screen.getByRole('navigation', {
       name: 'Navegación principal',

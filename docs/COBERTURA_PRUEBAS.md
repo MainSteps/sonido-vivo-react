@@ -1,8 +1,8 @@
 # Informe de pruebas y cobertura
 
 **Fecha de ejecución:** 18 de octubre de 2026
-**Línea base:** `8dc7253e4fe99e3630a6fb262318ff76d5152a11`
-**Entorno:** Vitest 5.0.4, jsdom y cobertura V8  
+**Línea base:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`
+**Entorno:** Node.js 24.19.0, npm 11.6.2, Vite 8.3.4, Vitest 5.0.4, jsdom 30.1.2 y cobertura V8
 **Estado:** provisional hasta integrar las PR restantes y congelar `main`
 
 ## 1. Comandos reproducibles
@@ -15,15 +15,18 @@ npm run test:coverage
 npm run build
 ```
 
-La cobertura generada queda en `coverage/` y no se versiona. La medición de este
-documento proviene de una ejecución real sobre la línea base indicada.
+La cobertura generada queda en `coverage/` y no se versiona. La medición proviene de una instalación limpia con `npm ci` y una ejecución real
+de `npm run test:run`, `npm run test:coverage`, `npm run lint` y `npm run build`. La copia de
+`docs/14-ers-cobertura` incorpora la línea base indicada sin cambios en el código
+de aplicación ni en las pruebas. `test:run` y `test:coverage` ejecutaron por separado la suite completa y ambos
+obtuvieron 65 pruebas aprobadas.
 
 ## 2. Resultado global comprobado
 
 | Verificación | Resultado |
 | --- | --- |
-| Archivos de prueba | 12 aprobados |
-| Pruebas | 63 aprobadas |
+| Archivos de prueba | 13 aprobados |
+| Pruebas | 65 aprobadas |
 | Sentencias | 78,85 % — 522/662 |
 | Ramas | 70,95 % — 281/396 |
 | Funciones | 93,02 % — 160/172 |
@@ -33,7 +36,7 @@ documento proviene de una ejecución real sobre la línea base indicada.
 
 ## 3. Doce pruebas representativas exigidas
 
-Las 63 pruebas automatizadas de la línea base permanecen en la suite. La siguiente matriz identifica
+Las 65 pruebas automatizadas de la línea base permanecen en la suite. La siguiente matriz identifica
 las cuatro evidencias mínimas que cada integrante debe poder explicar.
 
 ### 3.1 Bloque de Diego — navegación y formularios
@@ -45,9 +48,9 @@ las cuatro evidencias mínimas que cada integrante debe poder explicar.
 | D-03 | `ContactoPage.test.jsx` — `conserva el valor ingresado en un campo controlado` | Estado controlado | El campo nombre refleja el valor escrito desde el estado de React. |
 | D-04 | `ContactoPage.test.jsx` — `muestra el error y no procesa el envío si el nombre está vacío` | Validación | El error aparece y el mensaje de éxito permanece ausente. |
 
-Estos cuatro casos coinciden con la rama `test/3-navegacion-formularios`, commit
-`8269e14dbdee80850a9d0b642058690b32dd69d9`. Todavía no se contabilizan en la
-línea base porque la issue #3 no ha sido fusionada a `main`.
+Los cuatro casos forman parte de `main` mediante la PR #32, fusionada el 18 de
+octubre de 2026. D-01 y D-04 fortalecen pruebas existentes; D-02 y D-03 son
+casos nuevos. Por eso la suite pasa de 63 a 65 pruebas, no a 67.
 
 ### 3.2 Bloque de Matías — productos y catálogo
 
@@ -96,6 +99,12 @@ entre pruebas.
 | Servicios | 82,21 % | 72,78 % | 98,30 % | 84,93 % |
 | Utilidades | 84,61 % | 77,27 % | 100,00 % | 84,61 % |
 
+La configuración no define `coverage.include`, `coverage.all` ni umbrales mínimos.
+Estos porcentajes corresponden al conjunto que V8 informa en esta ejecución; no
+se deben presentar como cobertura de todos los archivos del repositorio. El reporte
+HTML permite consultar los archivos y líneas incluidos. Las pruebas en jsdom no
+verifican por sí solas el diseño responsivo ni el despliegue público.
+
 ## 6. Interpretación
 
 - **Sentencias** mide instrucciones ejecutadas por al menos una prueba.
@@ -114,10 +123,10 @@ se oculta ni se reemplaza con un porcentaje inventado.
 - Faltan casos dedicados a algunos errores de escritura en `localStorage`.
 - El CRUD de usuarios ya está incluido; sus ramas alternativas aún ofrecen espacio
   para aumentar la cobertura.
-- La issue #3 está publicada como rama, pero aún no tiene PR fusionada. Al integrarse
-  cambiará el total de pruebas y debe repetirse la medición final.
-- Las comprobaciones responsivas y de consola son manuales y deben registrarse en
-  el checklist de la issue #16.
+- La issue #3 ya está integrada mediante la PR #32 y está incluida en esta medición.
+- Se documentó una revisión local de cinco pantallas a tres anchos y una consulta
+  limitada de consola en `VERIFICACION_ENTREGA.md`. Las verificaciones públicas
+  y los estados no inspeccionados siguen pendientes para la issue #16.
 - La URL pública y el SHA final todavía dependen del congelamiento de la entrega.
 
 ## 8. Repetición final

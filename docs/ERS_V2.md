@@ -1,16 +1,17 @@
 # Especificación de Requisitos de Software — Sonido Vivo V2
 
-**Versión:** 2.0 provisional  
+**Versión:** 2.1 — revisión técnica; congelamiento de entrega pendiente
 **Fecha de revisión:** 18 de octubre de 2026
-**Repositorio:** `MainSteps/sonido-vivo-react`  
-**Línea base verificada:** `8dc7253e4fe99e3630a6fb262318ff76d5152a11`
+**Repositorio:** `MainSteps/sonido-vivo-react`
+**Línea base verificada:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`
 
 ## 1. Propósito
 
 Sonido Vivo es una tienda musical ficticia creada para demostrar el uso de React,
 componentes reutilizables, rutas, formularios controlados, estado compartido,
-persistencia local y pruebas automatizadas. Esta ERS describe únicamente funciones
-comprobadas en la línea base indicada. La aplicación no representa una empresa ni
+persistencia local y pruebas automatizadas. Esta ERS describe las funciones identificadas mediante revisión del código y
+las pruebas disponibles en la línea base indicada. Cada evidencia distingue
+implementación, prueba automatizada y comprobación manual pendiente. La aplicación no representa una empresa ni
 procesa operaciones comerciales reales.
 
 ## 2. Alcance y actores
@@ -72,7 +73,7 @@ procesa operaciones comerciales reales.
 | RF-09 | Debe restaurar un carrito válido y recuperarse de JSON corrupto sin romper la interfaz. | `carritoService.js`, pruebas de persistencia |
 | RF-10 | Registro debe validar RUN, nombre, apellidos, correo, contraseña, región, comuna y dirección. | `RegistroPage.jsx`, `validaciones.js` |
 | RF-11 | Cambiar la región debe limpiar la comuna seleccionada y cargar sus alternativas. | `RegistroPage.test.jsx` |
-| RF-12 | Inicio de sesión debe rechazar correo o contraseña inválidos y mostrar éxito solo con datos válidos. | `InicioSesionPage.jsx` y sus pruebas |
+| RF-12 | Inicio de sesión debe rechazar correo o contraseña inválidos y mostrar un aviso de demostración si los campos superan las validaciones, sin autenticar al usuario. | `InicioSesionPage.jsx` y sus pruebas |
 | RF-13 | Contacto debe exigir nombre y comentario; el correo es opcional, pero debe usar un dominio permitido cuando se ingresa. | `ContactoPage.jsx` y sus pruebas |
 | RF-14 | El mantenedor de productos debe listar, crear, editar y eliminar productos ficticios. | `AdminProductosPage.jsx` |
 | RF-15 | El mantenedor debe bloquear códigos duplicados, categorías inválidas, precio negativo y stock negativo o no entero. | `productosService.js` y sus pruebas |
@@ -89,7 +90,9 @@ procesa operaciones comerciales reales.
 - La categoría debe pertenecer al catálogo definido.
 - El precio debe ser numérico y mayor o igual a cero.
 - El stock debe ser un entero mayor o igual a cero.
-- Durante la edición se conserva el código para no invalidar referencias del carrito.
+- La interfaz deshabilita el código durante la edición. El servicio permite cambiarlo
+  si se invoca directamente con un código válido y no duplicado; no migra las
+  referencias existentes del carrito.
 
 ### 5.2 Carrito
 
@@ -113,7 +116,9 @@ procesa operaciones comerciales reales.
 ### 5.4 Usuarios ficticios
 
 - El RUN identifica al usuario y debe ser válido y único.
-- Los registros iniciales de demostración no pueden cambiar su RUN.
+- Ningún usuario puede cambiar su RUN mediante la edición. Los registros iniciales
+  usan identificadores `RUN-DEMO-*`, admitidos como excepción al editarlos; la
+  creación de usuarios exige RUN con dígito verificador válido.
 - Nombre, apellidos, correo y rol son obligatorios.
 - El rol debe ser `Administrador`, `Vendedor` o `Cliente`.
 - El correo debe usar uno de los dominios permitidos por las validaciones compartidas.
@@ -140,9 +145,9 @@ procesa operaciones comerciales reales.
 
 | Clave | Contenido | Recuperación segura |
 | --- | --- | --- |
-| `sonidoVivoProductos` | Arreglo de productos ficticios normalizados. | Usa la semilla válida ante ausencia o corrupción. |
+| `sonidoVivoProductos` | Arreglo de productos ficticios normalizados. | Usa la semilla ante ausencia, JSON inválido o tipo distinto de arreglo. |
 | `sonidoVivoCarrito` | Pares `codigoProducto` y `cantidad`. | Devuelve un carrito vacío o normalizado ante errores. |
-| `sonidoVivoUsuarios` | Arreglo de usuarios ficticios sin contraseña. | Usa la semilla válida ante ausencia o corrupción. |
+| `sonidoVivoUsuarios` | Arreglo de usuarios ficticios sin contraseña. | Usa la semilla ante ausencia, JSON inválido o tipo distinto de arreglo. |
 
 `localStorage` pertenece al navegador del usuario y no sustituye una base de
 datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensible.
@@ -151,16 +156,20 @@ datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensi
 
 | ID | Requisito | Verificación |
 | --- | --- | --- |
-| RNF-01 | La interfaz debe ser utilizable a 360, 768 y 1280 px. | Revisión manual indicada en las PR funcionales. |
-| RNF-02 | Los formularios deben asociar etiquetas, errores y controles accesibles. | `label`, `aria-invalid`, `aria-describedby`, roles de estado/alerta. |
+| RNF-01 | La interfaz debe ser utilizable a 360, 768 y 1280 px. | Revisión local de catálogo, registro, mantenedores y carrito vacío en los tres anchos; capturas y alcance en `VERIFICACION_ENTREGA.md`. Falta validación pública. |
+| RNF-02 | Los controles deben tener etiquetas y los errores deben ser perceptibles. | Hay etiquetas en formularios y atributos ARIA en mantenedores; registro, login y contacto aún requieren verificar y completar la asociación accesible de errores. |
 | RNF-03 | Un fallo de almacenamiento no debe producir una pantalla rota. | `try/catch` y pruebas de JSON corrupto. |
 | RNF-04 | Las rutas y componentes deben evitar manipulación directa del DOM. | Estado React, props, contexto y servicios. |
 | RNF-05 | La entrega debe aprobar lint, pruebas y build. | Informe `COBERTURA_PRUEBAS.md`. |
 | RNF-06 | El repositorio no debe contener secretos, `node_modules`, `dist` ni cobertura generada. | `.gitignore` y revisión de entrega. |
 
-## 9. Matriz de evidencia de los ocho indicadores
+## 9. Matriz interna de evidencia
 
-| Indicador | Evidencia identificable |
+Esta agrupación facilita la trazabilidad interna. No sustituye el texto de la
+rúbrica docente: la pauta original no está incluida entre las fuentes revisadas
+y su correspondencia exacta debe confirmarse antes de la entrega.
+
+| Área | Evidencia identificable |
 | --- | --- |
 | 1. Componentes React reutilizables | `SiteHeader`, `SiteFooter`, `ProductCard`, `ProductFilters`. |
 | 2. Props, estado y eventos | callbacks de tarjetas/filtros, formularios controlados y `userEvent`. |
@@ -168,18 +177,18 @@ datos. El proyecto no guarda contraseñas, sesiones, pagos ni información sensi
 | 4. Formularios y validación | registro, login, contacto y utilidades compartidas. |
 | 5. CRUD y reglas de negocio | servicios y administración local de productos y usuarios. |
 | 6. Estado compartido y persistencia | contexto del carrito y tres claves documentadas de `localStorage`. |
-| 7. Pruebas, mocks y cobertura | 63 pruebas actuales, `vi.fn`, confirmación y almacenamiento simulado. |
+| 7. Pruebas, mocks y cobertura | 65 pruebas actuales, `vi.fn`, confirmación y almacenamiento simulado. |
 | 8. Trabajo colaborativo y entrega | issues, ramas, PR revisadas, README y documentos versionados. |
 
 ## 10. Trazabilidad y control de versión
 
 - La medición descrita se ejecutó sobre la línea base
-  `8dc7253e4fe99e3630a6fb262318ff76d5152a11`.
+  `0baec31fa451d9e36a0e4524e3f43f00b2202e67`.
 - La PR #30 y el CRUD de usuarios pertenecen a esta línea base.
-- La rama `test/3-navegacion-formularios` contiene los cuatro casos de la issue #3,
-  pero todavía no forma parte de `main`.
-- Después de integrar esa PR, se repetirán instalación, lint, pruebas,
-  cobertura y build.
+- La PR #32 integra las pruebas de navegación y formularios de la issue #3.
+- Se repitieron instalación limpia, lint, suite con cobertura y build sobre una
+  copia de la rama documental actualizada con esta línea base: 13 archivos y
+  65 pruebas aprobadas; el informe registra las métricas.
 - La issue #16 registrará el SHA congelado que deberán compartir README, ERS,
   informe, ZIP y despliegue.
 
@@ -189,3 +198,41 @@ Esta ERS pasa de provisional a final cuando el equipo integra las funciones
 obligatorias, revisa la matriz, repite la suite sobre `main` y registra un único SHA
 de entrega. Cualquier función no fusionada debe permanecer declarada como pendiente
 o excluida, nunca como implementada.
+
+## 12. Límites verificados de la implementación
+
+- El registro público no invoca `crearUsuario`; validar el formulario no agrega
+  un usuario al mantenedor. Login no consulta usuarios ni contraseñas.
+- Los roles son datos de demostración: no protegen rutas ni restringen acciones.
+- `validarCampoObligatorio` solo compara con `""`; un texto formado por espacios
+  puede superar esa validación en los formularios públicos. Los servicios CRUD
+  recortan espacios en los campos de texto antes de validar.
+- `validarDominioCorreo` comprueba sufijos con distinción de mayúsculas; no es un
+  validador completo de correo. Los formularios públicos también usan `type="email"`.
+  El servicio de usuarios convierte el correo a minúsculas antes de validarlo.
+- El RUN acepta entre 7 y 9 caracteres, sin puntos ni guion, y comprueba su
+  dígito verificador. No verifica identidad ni existencia de la persona.
+- En registro, nombre admite hasta 50 caracteres; apellidos y correo hasta 100;
+  dirección hasta 300. La fecha de nacimiento es opcional y no verifica edad.
+  En contacto, nombre y correo admiten hasta 100 y comentario hasta 500.
+- La restauración del carrito agrupa códigos repetidos, convierte cantidades a
+  enteros y limita por stock; descarta productos ausentes, sin stock y cantidades
+  no válidas. No reserva ni descuenta inventario y no finaliza compras.
+- `CarritoProvider` recalcula sus productos cuando cambian los ítems. Los cambios
+  del mantenedor no invalidan por sí solos ese cálculo memorizado; no se garantiza
+  sincronización inmediata de precio, stock o eliminación mientras el carrito está
+  montado. Tampoco hay sincronización explícita entre pestañas.
+- Productos filtra registros inválidos y duplicados al leer un arreglo guardado;
+  un arreglo vacío válido permanece vacío. Usuarios acepta los elementos del
+  arreglo leído sin validar cada registro. No debe afirmarse una recuperación
+  uniforme de toda estructura corrupta en los tres servicios.
+- Un fallo de escritura del carrito devuelve `false` en el servicio, pero el
+  proveedor no comunica ese resultado a la interfaz. No se garantiza persistencia
+  cuando el navegador deniega el almacenamiento.
+- Se realizó una revisión local limitada de tamaños e interacciones, documentada
+  en `VERIFICACION_ENTREGA.md`. La revisión de rutas directas y recarga en hosting
+  y la auditoría completa de accesibilidad siguen pendientes. `BrowserRouter` requiere
+  configurar el hosting para servir `index.html` en rutas de la aplicación.
+
+Estas observaciones describen el alcance actual; no se presentan como funciones
+implementadas ni como comprobaciones manuales aprobadas.
