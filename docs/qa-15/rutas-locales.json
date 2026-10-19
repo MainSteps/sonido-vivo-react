@@ -1,0 +1,107 @@
+[
+  {
+    "route": "/",
+    "before": "Instrumentos para crear tu propio sonido",
+    "after": "Instrumentos para crear tu propio sonido",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/productos",
+    "before": "Encuentra tu próximo sonido",
+    "after": "Encuentra tu próximo sonido",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/productos/SV-GUI-001",
+    "before": "Guitarra eléctrica Aurora",
+    "after": "Guitarra eléctrica Aurora",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/productos/NO-EXISTE",
+    "before": "No encontramos ese producto",
+    "after": "No encontramos ese producto",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/carrito",
+    "before": "Tu carrito",
+    "after": "Tu carrito",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/registro",
+    "before": "Registro de usuario",
+    "after": "Registro de usuario",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/login",
+    "before": "Iniciar sesión",
+    "after": "Iniciar sesión",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/contacto",
+    "before": "Contacto",
+    "after": "Contacto",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/nosotros",
+    "before": "La música se disfruta mejor cuando se comparte",
+    "after": "La música se disfruta mejor cuando se comparte",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/blog",
+    "before": "Blog de Sonido Vivo",
+    "after": "Blog de Sonido Vivo",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/blog/preparar-primer-ensayo",
+    "before": "Cómo preparar tu primer ensayo",
+    "after": "Cómo preparar tu primer ensayo",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/blog/no-existe",
+    "before": "Artículo no encontrado",
+    "after": "Artículo no encontrado",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/admin/productos",
+    "before": "Productos",
+    "after": "Productos",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/admin/usuarios",
+    "before": "Usuarios",
+    "after": "Usuarios",
+    "sameHeading": true,
+    "logs": []
+  },
+  {
+    "route": "/no-existe",
+    "before": "Página no encontrada",
+    "after": "Página no encontrada",
+    "sameHeading": true,
+    "logs": []
+  }
+]

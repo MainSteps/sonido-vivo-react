@@ -1,0 +1,14 @@
+{
+  "project": "sonido-vivo-react",
+  "scope": "matiasu-24",
+  "url": "https://sonido-vivo-react.vercel.app",
+  "environment": "production",
+  "status": "READY",
+  "commit": "4486c4752130d69488b2176a55d0f3e2a2736b07",
+  "deploymentId": "dpl_EuHYQ976nsuUGR9asJ4oeX8Xie2j",
+  "framework": "vite",
+  "buildDurationSeconds": 7,
+  "httpChecks": 18,
+  "browserRoutes": 15,
+  "runtimeErrorsInFiveMinutes": 0
+}
