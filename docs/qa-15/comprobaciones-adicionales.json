@@ -1,0 +1,18 @@
+{
+  "fecha": "2026-10-18",
+  "origen": "http://127.0.0.1:4175",
+  "eliminacion": {
+    "producto": "QA-15",
+    "mensaje": "Producto eliminado correctamente.",
+    "filas_tras_recarga": 0,
+    "productos_iniciales_restantes": 6
+  },
+  "video": {
+    "url": "https://www.youtube-nocookie.com/embed/0vijAQHaIMQ?rel=0",
+    "titulo": "Blue Bird - cover by spaceronin7 (corxea)",
+    "tiempo_inicial_segundos": 0,
+    "tiempo_observado_segundos": 4,
+    "duracion_segundos": 104
+  },
+  "despliegue_publico_verificado": false
+}

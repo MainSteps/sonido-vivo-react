@@ -1,0 +1,168 @@
+{
+  "origin": "https://sonido-vivo-react.vercel.app",
+  "authentication": "ninguna; solicitudes sin cookies ni cabeceras de autorizacion",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/productos",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/productos",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/productos/SV-GUI-001",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/productos/SV-GUI-001",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/productos/NO-EXISTE",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/productos/NO-EXISTE",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/carrito",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/carrito",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/registro",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/registro",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/login",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/login",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/contacto",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/contacto",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/nosotros",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/nosotros",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/blog",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/blog",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/blog/preparar-primer-ensayo",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/blog/preparar-primer-ensayo",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/blog/no-existe",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/blog/no-existe",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/admin/productos",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/admin/productos",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/admin/usuarios",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/admin/usuarios",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/no-existe",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/no-existe",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 467,
+      "correctOrigin": true,
+      "appHtml": true
+    },
+    {
+      "path": "/assets/index-yLXd6LHo.js",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/assets/index-yLXd6LHo.js",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 312147,
+      "correctOrigin": true,
+      "appHtml": null
+    },
+    {
+      "path": "/assets/index-CANtJ5KD.css",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/assets/index-CANtJ5KD.css",
+      "contentType": "text/css; charset=utf-8",
+      "bytes": 16594,
+      "correctOrigin": true,
+      "appHtml": null
+    },
+    {
+      "path": "/images/producto-guitarra.svg",
+      "status": 200,
+      "url": "https://sonido-vivo-react.vercel.app/images/producto-guitarra.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 756,
+      "correctOrigin": true,
+      "appHtml": null
+    }
+  ]
+}
