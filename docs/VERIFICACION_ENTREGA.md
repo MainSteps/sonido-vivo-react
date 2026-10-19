@@ -2,7 +2,12 @@
 
 **Fecha:** 18 de octubre de 2026
 **Línea base de aplicación:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`
-**Estado:** documentación preparada para revisión; entrega final sin congelar.
+**Estado:** registro histórico de la revisión local previa al cierre final.
+
+Este documento conserva la evidencia producida sobre la línea base indicada y
+no pretende describir el estado actual de GitHub. El resumen vigente se encuentra
+en `ENTREGA_FINAL.md`; el SHA, ZIP y aprobaciones definitivas se registran en la
+issue #16.
 
 ## Entorno y alcance
 
@@ -76,7 +81,7 @@ capturas en `docs/qa-15`.
 
 No se modificó código funcional ni se agregaron pruebas durante esta actualización.
 
-## Cierre externo requerido
+## Estado registrado al terminar esta revisión histórica
 
 - [ ] Diego y Michel revisan la ERS, resultados y observaciones de la PR #31.
 - [ ] Se integra la documentación aprobada en `main`.
@@ -87,6 +92,7 @@ No se modificó código funcional ni se agregaron pruebas durante esta actualiza
 - [ ] Se genera el ZIP final desde el SHA congelado y se registra su checksum.
 - [ ] Los tres integrantes aprueban el congelamiento en la issue #16.
 
-No se marcaron aprobaciones ni resultados externos sin evidencia. El ZIP candidato
-preparado junto a esta documentación sirve para revisión; no sustituye el ZIP
-final vinculado al futuro SHA congelado.
+Estas casillas conservan el estado que existía el 18 de octubre y no deben usarse
+como checklist vigente. No se marcaron aprobaciones ni resultados externos sin
+evidencia. El ZIP candidato preparado junto a esta documentación servía para
+revisión y no sustituye el ZIP final registrado en la issue #16.

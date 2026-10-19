@@ -1,9 +1,9 @@
 # Informe de pruebas y cobertura
 
-**Fecha de ejecución:** 18 de octubre de 2026
-**Línea base:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`
-**Entorno:** Node.js 24.19.0, npm 11.6.2, Vite 8.3.4, Vitest 5.0.4, jsdom 30.1.2 y cobertura V8
-**Estado:** provisional hasta integrar las PR restantes y congelar `main`
+**Fecha de ejecución:** 19 de octubre de 2026
+**Base de la corrección final:** `b45b2dd78e82559b2f3b0ee0c840cb16c70d4a57`
+**Entorno:** Node.js 24.19.0, npm 11.9.0, Vite 8.3.4, Vitest 5.0.4, jsdom 30.1.2 y cobertura V8
+**Estado:** evidencia final de la candidata; SHA congelado registrado en la issue #16
 
 ## 1. Comandos reproducibles
 
@@ -15,28 +15,28 @@ npm run test:coverage
 npm run build
 ```
 
-La cobertura generada queda en `coverage/` y no se versiona. La medición proviene de una instalación limpia con `npm ci` y una ejecución real
-de `npm run test:run`, `npm run test:coverage`, `npm run lint` y `npm run build`. La copia de
-`docs/14-ers-cobertura` incorpora la línea base indicada sin cambios en el código
-de aplicación ni en las pruebas. `test:run` y `test:coverage` ejecutaron por separado la suite completa y ambos
-obtuvieron 65 pruebas aprobadas.
+La cobertura generada queda en `coverage/` y no se versiona. La medición proviene
+de una instalación limpia con `npm ci` y ejecuciones separadas de
+`npm run test:run`, `npm run test:coverage`, `npm run lint` y `npm run build`.
+Ambas ejecuciones de la suite obtuvieron 66 pruebas aprobadas.
 
 ## 2. Resultado global comprobado
 
 | Verificación | Resultado |
 | --- | --- |
 | Archivos de prueba | 13 aprobados |
-| Pruebas | 65 aprobadas |
-| Sentencias | 78,85 % — 522/662 |
-| Ramas | 70,95 % — 281/396 |
-| Funciones | 93,02 % — 160/172 |
-| Líneas | 80,09 % — 511/638 |
+| Pruebas | 66 aprobadas |
+| Sentencias | 78,97 % — 526/666 |
+| Ramas | 71,10 % — 283/398 |
+| Funciones | 93,14 % — 163/175 |
+| Líneas | 80,21 % — 515/642 |
 | ESLint | Aprobado |
-| Build de Vite | Aprobado, 52 módulos transformados |
+| Build de Vite | Aprobado, 53 módulos transformados |
+| Auditoría de dependencias | 0 vulnerabilidades |
 
 ## 3. Doce pruebas representativas exigidas
 
-Las 65 pruebas automatizadas de la línea base permanecen en la suite. La siguiente matriz identifica
+Las 66 pruebas automatizadas de la candidata permanecen en la suite. La siguiente matriz identifica
 las cuatro evidencias mínimas que cada integrante debe poder explicar.
 
 ### 3.1 Bloque de Diego — navegación y formularios
@@ -51,6 +51,11 @@ las cuatro evidencias mínimas que cada integrante debe poder explicar.
 Los cuatro casos forman parte de `main` mediante la PR #32, fusionada el 18 de
 octubre de 2026. D-01 y D-04 fortalecen pruebas existentes; D-02 y D-03 son
 casos nuevos. Por eso la suite pasa de 63 a 65 pruebas, no a 67.
+
+La corrección final agrega el caso `permite navegar entre los mantenedores de
+administración`, que comprueba el recorrido mediante enlaces visibles desde el
+inicio hasta Productos y luego Usuarios. Por eso la suite final contiene 66
+pruebas.
 
 ### 3.2 Bloque de Matías — productos y catálogo
 
@@ -93,7 +98,7 @@ entre pruebas.
 
 | Área | Sentencias | Ramas | Funciones | Líneas |
 | --- | ---: | ---: | ---: | ---: |
-| Componentes | 90,47 % | 75,00 % | 92,85 % | 95,00 % |
+| Componentes | 92,00 % | 78,57 % | 94,11 % | 95,83 % |
 | Contexto | 79,54 % | 61,53 % | 100,00 % | 81,39 % |
 | Páginas | 74,19 % | 68,88 % | 87,80 % | 74,17 % |
 | Servicios | 82,21 % | 72,78 % | 98,30 % | 84,93 % |
@@ -128,16 +133,16 @@ se oculta ni se reemplaza con un porcentaje inventado.
   limitada de consola en `VERIFICACION_ENTREGA.md`.
 - La verificación pública de rutas, recargas e interacciones está registrada en
   `docs/qa-15/README.md` para el despliegue de Vercel.
-- El SHA final y la repetición de los controles sobre `main` todavía dependen del
-  congelamiento de la entrega en la issue #16.
+- El SHA definitivo, el redeploy y el ZIP se comprueban después del merge y se
+  registran en la issue #16; no modifican el resultado funcional de esta suite.
 
 ## 8. Repetición final
 
-Después de integrar las PR obligatorias:
+Después de fusionar la corrección final:
 
 1. partir desde una copia limpia de `main`;
 2. ejecutar los cinco comandos de la sección 1;
-3. reemplazar esta medición por los resultados nuevos;
+3. confirmar que los resultados coinciden con esta medición;
 4. confirmar que las 12 pruebas representativas siguen aprobando;
 5. registrar en la issue #16 el SHA único usado por ERS, cobertura, README, ZIP y
    despliegue.

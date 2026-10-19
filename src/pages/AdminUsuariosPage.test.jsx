@@ -11,6 +11,7 @@ import {
   within,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import AdminUsuariosPage from './AdminUsuariosPage.jsx'
 
 const USUARIO_INICIAL = {
@@ -100,7 +101,9 @@ describe('administración de usuarios', () => {
     const servicio = crearServicioSimulado()
 
     render(
-      <AdminUsuariosPage servicio={servicio} />,
+      <MemoryRouter>
+        <AdminUsuariosPage servicio={servicio} />
+      </MemoryRouter>,
     )
 
     expect(
@@ -141,7 +144,9 @@ describe('administración de usuarios', () => {
     ).mockReturnValue(true)
 
     render(
-      <AdminUsuariosPage servicio={servicio} />,
+      <MemoryRouter>
+        <AdminUsuariosPage servicio={servicio} />
+      </MemoryRouter>,
     )
 
     await usuario.type(
@@ -291,7 +296,9 @@ describe('administración de usuarios', () => {
     })
 
     render(
-      <AdminUsuariosPage servicio={servicio} />,
+      <MemoryRouter>
+        <AdminUsuariosPage servicio={servicio} />
+      </MemoryRouter>,
     )
 
     await usuario.click(

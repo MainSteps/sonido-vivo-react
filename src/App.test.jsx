@@ -67,6 +67,34 @@ describe('Rutas de la aplicación', () => {
     ).toBeInTheDocument()
   })
 
+  test('permite navegar entre los mantenedores de administración', async () => {
+    const usuario = userEvent.setup()
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    await usuario.click(screen.getByRole('link', { name: 'Administración' }))
+
+    expect(
+      screen.getByRole('heading', { name: 'Productos' }),
+    ).toBeInTheDocument()
+
+    const navegacionAdministracion = screen.getByRole('navigation', {
+      name: 'Navegación de administración',
+    })
+
+    await usuario.click(
+      within(navegacionAdministracion).getByRole('link', { name: 'Usuarios' }),
+    )
+
+    expect(
+      screen.getByRole('heading', { name: 'Usuarios' }),
+    ).toBeInTheDocument()
+  })
+
   test('muestra la página nosotros', () => {
     render(
       <MemoryRouter initialEntries={['/nosotros']}>

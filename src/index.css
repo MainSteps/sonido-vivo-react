@@ -493,6 +493,31 @@ p {
   padding: 4rem 0 5rem;
 }
 
+.admin-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-navigation__link {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.admin-navigation__link:hover,
+.admin-navigation__link.activo {
+  color: #fff;
+  border-color: var(--accent);
+  background: rgba(240, 68, 131, 0.16);
+}
+
 .admin-products-header {
   display: flex;
   align-items: flex-end;

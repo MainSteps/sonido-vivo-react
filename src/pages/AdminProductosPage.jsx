@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AdminNavigation from '../components/AdminNavigation.jsx'
 import { CATEGORIAS_PRODUCTO } from '../data/productos.js'
 import * as productosService from '../services/productosService.js'
 import { formatearPrecio } from '../utils/formatoPrecio.js'
@@ -101,6 +102,8 @@ function AdminProductosPage({ servicio = productosService }) {
 
   return (
     <main className="admin-products-page">
+      <AdminNavigation />
+
       <header className="admin-products-header">
         <div>
           <p className="eyebrow">Administración local</p>
