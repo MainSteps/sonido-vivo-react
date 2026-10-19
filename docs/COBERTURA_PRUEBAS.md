@@ -125,9 +125,11 @@ se oculta ni se reemplaza con un porcentaje inventado.
   para aumentar la cobertura.
 - La issue #3 ya está integrada mediante la PR #32 y está incluida en esta medición.
 - Se documentó una revisión local de cinco pantallas a tres anchos y una consulta
-  limitada de consola en `VERIFICACION_ENTREGA.md`. Las verificaciones públicas
-  y los estados no inspeccionados siguen pendientes para la issue #16.
-- La URL pública y el SHA final todavía dependen del congelamiento de la entrega.
+  limitada de consola en `VERIFICACION_ENTREGA.md`.
+- La verificación pública de rutas, recargas e interacciones está registrada en
+  `docs/qa-15/README.md` para el despliegue de Vercel.
+- El SHA final y la repetición de los controles sobre `main` todavía dependen del
+  congelamiento de la entrega en la issue #16.
 
 ## 8. Repetición final
 
