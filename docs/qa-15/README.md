@@ -3,7 +3,7 @@
 **Fecha:** 18 de octubre de 2026 (America/Santiago).  
 **Repositorio:** MainSteps/sonido-vivo-react.  
 **Línea base:** `0baec31fa451d9e36a0e4524e3f43f00b2202e67`.  
-**Estado:** verificación local completada; despliegue y revisión del equipo pendientes.
+**Estado:** verificación técnica local y pública completada; revisión del equipo y fusión pendientes.
 
 ## 1. Reproducción
 
@@ -123,9 +123,9 @@ comportamiento en el futuro hosting público.
 
 | ID | Hallazgo | Responsable / seguimiento | Decisión |
 | --- | --- | --- | --- |
-| QA15-01 | No existe una URL pública verificada en esta revisión. Se creó un proyecto de hosting, pero no se publicó una versión. | Michel coordina con el equipo; issue #15. | Bloquea el cierre de la issue hasta publicar y comprobar acceso sin sesión. |
-| QA15-02 | La publicación no pudo avanzar por una limitación de aprobación del entorno. | Matías coordina el acceso de publicación; Michel verifica el resultado. | Conservar la evidencia local y completar el despliegue desde un entorno autorizado. |
-| QA15-03 | Resuelto localmente: el vídeo carga y su tiempo avanza de 0 a 4 segundos. | Diego, contenido institucional. | Repetir en la URL pública cuando exista. |
+| QA15-01 | Resuelto: URL pública de producción verificada en Vercel. | Evidencia disponible para revisión de Michel. | Usar `https://sonido-vivo-react.vercel.app`; los aliases de despliegue pueden pedir acceso a Vercel. |
+| QA15-02 | Resuelto: se publicó mediante la CLI oficial de Vercel con la cuenta autorizada `matiasu-24`. | Matías; revisión de Michel. | La publicación alternativa de Sites no se utilizó. No contiene una versión publicada. |
+| QA15-03 | Resuelto: reproducción local de 0 a 4 s y reproducción pública de 0 a 2 s. | Diego, contenido institucional. | Evidencia visual del tramo reproducido, sin certificar el vídeo completo. |
 | QA15-04 | Resuelto: se completó la eliminación de QA-15 y se verificó su ausencia tras recargar. | Evidencia disponible para revisión de Michel. | Sin corrección funcional requerida. |
 
 No se detectaron errores críticos de consola en las capturas de logs recogidas.
@@ -139,10 +139,55 @@ accesibilidad ni una simulación de múltiples usuarios.
 - [x] Rutas abiertas directamente y recargadas **en entorno local**.
 - [x] Sin errores críticos de consola observados en las consultas registradas.
 - [x] Hallazgos pendientes identificados con responsable y decisión propuesta.
-- [ ] URL pública publicada y comprobada sin sesión.
-- [ ] Apertura directa y recargas comprobadas en esa URL.
+- [x] URL pública publicada y comprobada sin sesión.
+- [x] Apertura directa y recargas comprobadas en esa URL.
 - [ ] Decisiones pendientes confirmadas por el equipo antes del congelamiento.
 - [ ] PR revisada por una persona distinta del autor y fusionada mediante squash.
 
-La issue #15 permanece abierta. Michel conserva la asignación; este informe no
+La issue #15 permanece abierta hasta la revisión y fusión. Michel conserva la asignación; este informe no
 atribuye a otra persona la ejecución o aprobación de verificaciones que no realizó.
+
+## 7. Despliegue público verificado
+
+- **URL de entrega para revisión:** https://sonido-vivo-react.vercel.app
+- **Cuenta/proyecto:** `matiasu-24/sonido-vivo-react`.
+- **Entorno:** producción, estado `READY`.
+- **Commit fuente publicado:** `4486c4752130d69488b2176a55d0f3e2a2736b07`.
+- **Deployment ID:** `dpl_EuHYQ976nsuUGR9asJ4oeX8Xie2j`.
+- **Framework y runtime:** Vite; Node.js 24.x.
+- **Build remoto:** instalación mediante `npm ci`, 52 módulos transformados,
+  Vite en 320 ms; duración de build informada por Vercel: 7 s.
+- **Enrutamiento:** `vercel.json` reescribe las rutas SPA hacia `/index.html`,
+  conforme a la [guía oficial de Vite en Vercel](https://vercel.com/docs/frameworks/frontend/vite#using-vite-to-make-spas).
+- **Credenciales:** `.vercel` y `.env*` están excluidos de Git. La inspección de
+  archivos de despliegue no incluyó `.env`, `.vercel/` ni `.git/`.
+
+Se comprobó el dominio de producción con solicitudes HTTP sin cookies ni cabeceras
+de autorización: quince rutas de la aplicación y tres recursos (JavaScript, CSS e
+imagen) devolvieron HTTP 200 en el mismo origen. Las páginas devolvieron el HTML de
+la aplicación y los recursos sus tipos de contenido esperados.
+Evidencia: [http-publico.json](http-publico.json).
+
+El navegador verificó apertura y recarga de quince rutas y sus encabezados
+esperados; no se registraron errores de consola en las consultas de esas rutas.
+Evidencia: [rutas-vercel.json](rutas-vercel.json). En la navegación automatizada
+rápida se observó una carga transitoria con el root vacío y sin error de consola;
+una recarga recuperó el artículo. No se atribuye una causa confirmada a ese evento.
+Se registra como **QA15-05**, con seguimiento de Michel: repetir navegación en su
+navegador antes del congelamiento y abrir un defecto reproducible si reaparece.
+
+En producción también se agregó una guitarra, se recargó el carrito y se comprobó
+cantidad 1 y total $329.990; después se vació el carrito. El vídeo externo cargó y
+su tiempo avanzó de 0 a 2 segundos. Capturas: [catálogo](catalogo-vercel.png),
+[carrito](carrito-vercel.png) y [vídeo](video-vercel.png).
+
+La consulta de logs de runtime de Vercel para errores en los últimos 5 minutos
+retornó 0 registros. Es un sitio estático: esto no reemplaza la revisión de consola
+ni constituye monitoreo continuo. Evidencia: [runtime-errors.jsonl](resultados/runtime-errors.jsonl).
+La consulta inicial de una hora excedió la retención disponible del plan Hobby y
+se repitió con una ventana admitida. No se contrataron add-ons ni servicios de pago.
+
+Esta publicación corresponde a una rama de trabajo. Después de fusionar las PR y
+congelar `main`, la issue #16 debe publicar el SHA definitivo y generar el ZIP de
+ese mismo estado. Las actualizaciones posteriores de esta evidencia no modifican
+el código funcional del despliegue verificado.
