@@ -11,10 +11,13 @@ Se revisó el build de producción servido por `vite preview` en
 aplicación, las pruebas y el archivo de dependencias coinciden con la línea base.
 Los documentos actualizados aún deben integrarse mediante la PR #31.
 
-La comprobación local no acredita funcionamiento de un hosting público. El enlace
-`https://github.com/MainSteps/sonido-vivo-react.git` identifica el repositorio y no
-es una dirección de ejecución de la tienda. El repositorio no informa homepage ni
-registros de deployment públicos consultables en esta revisión.
+Esta sección conserva el alcance de la comprobación local. Posteriormente, la PR
+#33 publicó la aplicación en
+[sonido-vivo-react.vercel.app](https://sonido-vivo-react.vercel.app) y comprobó
+rutas directas, recargas, recursos e interacciones. La evidencia pública está en
+`docs/qa-15/README.md`. El enlace
+`https://github.com/MainSteps/sonido-vivo-react.git` continúa identificando el
+repositorio, no la aplicación ejecutándose.
 
 ## Comprobaciones de layout
 
@@ -53,9 +56,10 @@ Las capturas se guardan en [evidencias](evidencias/). El archivo
 
 La consulta de consola realizada tras recargar el carrito y vaciarlo no devolvió
 advertencias ni errores. Esto describe únicamente la captura de logs de ese tramo;
-no certifica la ausencia de errores en todas las rutas. Al visitar inicio se
-observó un fallo de carga del iframe externo de YouTube con un mensaje de cambio
-de red. Su reproducción no pudo certificarse en este entorno.
+no certifica la ausencia de errores en todas las rutas. En esta revisión local se
+observó un fallo de red del iframe externo de YouTube. La verificación posterior
+de la PR #33 consiguió reproducirlo tanto en local como en producción y conserva
+capturas en `docs/qa-15`.
 
 ## Evidencia automatizada
 
@@ -77,9 +81,9 @@ No se modificó código funcional ni se agregaron pruebas durante esta actualiza
 - [ ] Diego y Michel revisan la ERS, resultados y observaciones de la PR #31.
 - [ ] Se integra la documentación aprobada en `main`.
 - [ ] Se obtiene el SHA completo posterior a esa integración.
-- [ ] Se registra una URL pública de la aplicación y el commit desplegado.
-- [ ] Se comprueban apertura directa y recarga de rutas en ese hosting.
-- [ ] Se verifica el contenido externo de inicio desde una conexión disponible.
+- [x] Se registró la URL pública y el commit desplegado en `docs/qa-15`.
+- [x] Se comprobaron apertura directa y recarga de rutas en Vercel.
+- [x] Se verificó un tramo de reproducción del contenido externo en producción.
 - [ ] Se genera el ZIP final desde el SHA congelado y se registra su checksum.
 - [ ] Los tres integrantes aprueban el congelamiento en la issue #16.
 
