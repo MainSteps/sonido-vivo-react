@@ -79,7 +79,7 @@ consola realizada tras esa recarga. Los datos por ruta constan en
 
 Esto comprueba el fallback local de Vite Preview; **no demuestra que un hosting
 público tenga configuradas las recargas SPA**. La reproducción del contenido
-externo de YouTube tampoco queda certificada por comprobar el título de inicio.
+externo de YouTube se comprobó por separado como se describe en la sección 4.
 
 ## 4. Interacciones y persistencia
 
@@ -100,15 +100,24 @@ Todas las entradas utilizadas son de prueba y permanecieron en el navegador loca
 | Vaciar carrito | Contador en 0 y estado vacío. |
 | Crear producto temporal QA-15 y recargar | Producto visible con precio $1.000 y stock 2. |
 | Editar nombre de QA-15 y recargar | Nombre actualizado conservado. |
+| Eliminar QA-15 con confirmación y recargar | Mensaje de eliminación correcta, 0 filas QA-15 y 6 productos iniciales conservados. |
+| Reproducir el vídeo externo de inicio | Reproductor cargado; tiempo observado de 0 a 4 segundos, duración 1:44. |
 
 Capturas: [registro](registro-validado.png), [login](login-validado.png),
 [contacto](contacto-validado.png), [carrito restaurado](carrito-restaurado.png) y
 [producto editado](producto-editado.png).
 
-La eliminación manual del producto temporal no se declara aprobada: la interacción
-con el diálogo de confirmación no pudo completarse desde el navegador de revisión;
-el registro siguió presente al recargar. El caso CRUD automatizado sí aprobó. No
-se interpreta la limitación de interacción como defecto funcional confirmado.
+La comprobación adicional completó la eliminación del registro temporal. Se observó
+el mensaje «Producto eliminado correctamente.» y se recargó el mantenedor: el
+registro QA-15 estaba ausente y permanecían los seis productos iniciales.
+Evidencia: [producto eliminado](producto-eliminado.png).
+
+El vídeo de inicio se cargó al desplazar la página hasta el iframe. El reproductor
+mostró «Blue Bird - cover by spaceronin7 (corxea)»; se inició la reproducción y el
+tiempo pasó de 0 a 4 segundos, con duración indicada de 1 minuto y 44 segundos.
+Evidencia: [reproducción del vídeo](video-reproduccion.png). Esto comprueba un tramo
+de reproducción en la conexión local revisada, no la reproducción completa ni el
+comportamiento en el futuro hosting público.
 
 ## 5. Hallazgos y decisiones
 
@@ -116,8 +125,8 @@ se interpreta la limitación de interacción como defecto funcional confirmado.
 | --- | --- | --- | --- |
 | QA15-01 | No existe una URL pública verificada en esta revisión. Se creó un proyecto de hosting, pero no se publicó una versión. | Michel coordina con el equipo; issue #15. | Bloquea el cierre de la issue hasta publicar y comprobar acceso sin sesión. |
 | QA15-02 | La publicación no pudo avanzar por una limitación de aprobación del entorno. | Matías coordina el acceso de publicación; Michel verifica el resultado. | Conservar la evidencia local y completar el despliegue desde un entorno autorizado. |
-| QA15-03 | El contenido externo de YouTube no tiene reproducción comprobada. | Diego, responsable del contenido institucional. | Confirmar desde la URL pública; si falla, registrar la corrección o una alternativa antes del congelamiento. |
-| QA15-04 | El diálogo de eliminación no pudo completarse manualmente en esta sesión; la suite CRUD sí aprueba. | Michel verifica en su navegador. | Repetir creación/edición/eliminación con datos de prueba; no cerrar como fallo de código sin reproducirlo. |
+| QA15-03 | Resuelto localmente: el vídeo carga y su tiempo avanza de 0 a 4 segundos. | Diego, contenido institucional. | Repetir en la URL pública cuando exista. |
+| QA15-04 | Resuelto: se completó la eliminación de QA-15 y se verificó su ausencia tras recargar. | Evidencia disponible para revisión de Michel. | Sin corrección funcional requerida. |
 
 No se detectaron errores críticos de consola en las capturas de logs recogidas.
 La revisión fue funcional y local, no una auditoría exhaustiva de seguridad o
