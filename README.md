@@ -77,8 +77,8 @@ a cada navegador y no se comparten entre equipos.
 - [Pruebas de navegación y formularios](docs/pruebas-navegacion-formularios.md)
 - [Pruebas de productos y catálogo](docs/pruebas-productos-catalogo.md)
 - [Pruebas del carrito](docs/pruebas-carrito.md)
-
-- [Verificación local y pendientes de entrega](docs/VERIFICACION_ENTREGA.md)
+- [Verificación local y estado de entrega](docs/VERIFICACION_ENTREGA.md)
+- [QA desde copia limpia y despliegue público](docs/qa-15/README.md)
 
 ## Estado de la evidencia
 
@@ -86,9 +86,14 @@ La medición provisional del 18 de octubre de 2026 corresponde al commit de
 aplicación `0baec31fa451d9e36a0e4524e3f43f00b2202e67`: 13 archivos y 65 pruebas
 aprobadas, 78,85 % de sentencias, 70,95 % de ramas, 93,02 % de funciones y
 80,09 % de líneas. La medición incluye la PR #32 de navegación y formularios. Instalación limpia,
-lint, suite con cobertura y build fueron comprobados. El SHA definitivo de entrega
-y la URL pública se registrarán durante la issue #16. La revisión local de cinco
-pantallas a 360, 768 y 1280 px y las interacciones verificadas se documentan en
+lint, suite con cobertura y build fueron comprobados.
+
+La aplicación está publicada en [sonido-vivo-react.vercel.app](https://sonido-vivo-react.vercel.app).
+La verificación pública de rutas, recargas e interacciones corresponde al commit
+`4486c4752130d69488b2176a55d0f3e2a2736b07` y está documentada en
+`docs/qa-15/README.md`. El SHA definitivo de entrega se registrará durante la
+issue #16 después de integrar la documentación y congelar `main`. La revisión
+local de cinco pantallas a 360, 768 y 1280 px se documenta en
 `docs/VERIFICACION_ENTREGA.md`, con capturas.
 
 ## Límites del sistema
